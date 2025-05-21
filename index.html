@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happipad - Insurance Flow</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.cdnfonts.com/css/nexa" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            -webkit-font-smoothing: antialiased;
+            box-sizing: border-box;
+            font-weight: 700;
+            color: #3C3F4C;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        button:focus-visible {
+            outline: 2px solid #4a90e2 !important;
+            outline: -webkit-focus-ring-color auto 5px !important;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        @font-face {
+            font-family: 'Nexa';
+            src: url('https://fonts.cdnfonts.com/s/15011/NexaBold.woff2') format('woff2'),
+                 url('https://fonts.cdnfonts.com/s/15011/NexaBold.woff') format('woff'),
+                 url('https://fonts.cdnfonts.com/s/15011/NexaBold.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        .step-indicator {
+            position: relative;
+            padding-left: 2rem;
+            font-weight: 700;
+        }
+
+        .step-indicator::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--secondary-blue);
+        }
+
+        .step-indicator.active::before {
+            background-color: var(--theme-secondary);
+        }
+
+        .step-indicator .indicator {
+            position: absolute;
+            left: -4px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--secondary-blue);
+        }
+
+        .step-indicator.active .indicator {
+            background-color: var(--theme-secondary);
+        }
+
+        .step-indicator.completed .indicator {
+            background-color: var(--theme-secondary);
+        }
+
+        .step-indicator.completed::before {
+            background-color: var(--theme-secondary);
+        }
+
+        .vertical-progress {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 8px;
+            background-color: #BDC9DB;
+            border-radius: 4px;
+        }
+
+        .vertical-progress::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 8px;
+            height: 20%;
+            background-color: #4869AF;
+            border-radius: 4px;
+        }
+
+        .rounded-999 {
+            border-radius: 999px;
+            padding: 8px 16px;
+        }
+
+        .header-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 16px;
+            transition: all 0.3s ease;
+            color: var(--theme-secondary);
+            border-radius: 999px;
+            font-weight: 700;
+        }
+
+        .header-button:hover {
+            color: var(--primary-blue);
+        }
+
+        /* Date input styles */
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            color: #3C3F4C;
+            transform: scale(1.5);
+            margin-right: 8px;
+        }
+
+        input[type="date"]::-webkit-datetime-edit {
+            color: #3C3F4C;
+            font-size: 16px;
+            padding: 4px 0;
+        }
+
+        input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+            color: #3C3F4C;
+            font-size: 16px;
+        }
+
+        input[type="date"]::-webkit-datetime-edit-text {
+            color: #3C3F4C;
+            font-size: 16px;
+            padding: 0 4px;
+        }
+
+        input[type="date"]::-webkit-datetime-edit-month-field {
+            color: #3C3F4C;
+            font-size: 16px;
+        }
+
+        input[type="date"]::-webkit-datetime-edit-day-field {
+            color: #3C3F4C;
+            font-size: 16px;
+        }
+
+        input[type="date"]::-webkit-datetime-edit-year-field {
+            color: #3C3F4C;
+            font-size: 16px;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'nexa': ['Nexa', 'Helvetica', 'Arial', 'sans-serif'],
+                    },
+                    colors: {
+                        'text-1': 'rgba(24, 45, 76, 1)',
+                        'text-2': '#3C3F4C',
+                        'theme-secondary': 'rgba(72, 105, 175, 1)',
+                        'bg-white': 'rgba(255, 255, 255, 1)',
+                        'primary-blue': 'rgba(24, 45, 76, 1)',
+                        'text': '#3C3F4C',
+                        'hitbox': 'rgba(189, 201, 219, 0)',
+                        'text-secondary-2': 'rgba(109, 111, 121, 1)',
+                        'secondary-blue': 'rgba(242, 246, 250, 1)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-secondary-blue min-h-screen font-nexa">
+    <!-- Top Bar -->
+    <div class="bg-[#2A4B73] text-white py-2 px-4 text-center">
+        <p class="text-[#F2F6FA] text-sm">Nullam vel sem. Maecenas malesuada. Cras dapibus. Vivamus consectetuer hendrerit lacus.</p>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-bg-white w-full">
+        <div class="px-8 py-4 w-full">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <span class="text-3xl font-sora text-primary-blue">happipad</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="header-button">
+                        <span>Help 24/7</span>
+                    </button>
+                    <button class="header-button">
+                        <span>Sign in</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex flex-col gap-3">
+            <div class="flex gap-3">
+                <!-- Steps Sidebar -->
+                <div class="bg-bg-white p-4 rounded-lg border border-[#EEF5FD]" style="width: 231px; height: 400px;">
+                    <div class="mb-6">
+                        <h2 class="text-xl text-text-1 pl-4">Steps</h2>
+                    </div>
+                    <div class="relative">
+                        <div class="vertical-progress" style="height: calc(100% - 1rem);"></div>
+                        <div class="space-y-4">
+                            <div class="step-indicator active">
+                                <div class="indicator"></div>
+                                <div class="ml-4">
+                                    <div class="text-theme-secondary">Address</div>
+                                </div>
+                            </div>
+                            <div class="step-indicator">
+                                <div class="indicator"></div>
+                                <div class="ml-4">
+                                    <div class="text-text-secondary-2">Start date</div>
+                                </div>
+                            </div>
+                            <div class="step-indicator">
+                                <div class="indicator"></div>
+                                <div class="ml-4">
+                                    <div class="text-text-secondary-2">Personal details</div>
+                                </div>
+                            </div>
+                            <div class="step-indicator">
+                                <div class="indicator"></div>
+                                <div class="ml-4">
+                                    <div class="text-text-secondary-2">Contact info</div>
+                                </div>
+                            </div>
+                            <div class="step-indicator">
+                                <div class="indicator"></div>
+                                <div class="ml-4">
+                                    <div class="text-text-secondary-2">Pick your plan</div>
+                                </div>
+                            </div>
+                            <div class="step-indicator">
+                                <div class="indicator"></div>
+                                <div class="ml-4">
+                                    <div class="text-text-secondary-2">Payment</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question Section -->
+                <div class="flex-1">
+                    <div class="bg-bg-white p-6 rounded-lg h-full flex flex-col border border-[#EEF5FD]">
+                        <div class="mb-6">
+                            <h1 class="text-3xl text-text-1 mb-2">What's your insurance start date?</h1>
+                            <p class="text-[#3C3F4C]">Date should be in the future.</p>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block mb-2 text-sm text-[#3C3F4C]">Start date</label>
+                                <input type="date" class="w-full border-[0.5px] border-[#6D6F79] rounded-[4px] px-4 py-2 text-[#3C3F4C] focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300" min="2024-03-20">
+                            </div>
+                        </div>
+                        <div class="flex gap-3 mt-auto pt-6">
+                            <button class="border border-theme-secondary text-theme-secondary px-6 pt-[16px] pb-[11px] rounded-999 hover:bg-secondary-blue transition-colors flex items-center justify-center" style="width: 100px;">Back</button>
+                            <button class="bg-theme-secondary text-white px-6 pt-[16px] pb-[11px] rounded-999 hover:bg-primary-blue transition-colors flex-1 flex items-center justify-center">Continue</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="bg-bg-white p-6 rounded-lg border border-[#EEF5FD]">
+                <h2 class="text-2xl text-text-1 mb-4">Happicover FAQs</h2>
+                <div class="space-y-2">
+                    <details class="border rounded-999 p-4 hover:border-theme-secondary transition-colors">
+                        <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999">
+                            What does the coverage include?
+                            <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
+                        </summary>
+                        <div class="mt-4 text-text-2">
+                            <div class="mb-2">What's Covered:</div>
+                            <p class="mb-4">
+                                Bodily Injury – Up to $1M/event<br>
+                                Property Damage – Up to $100K/event<br>
+                                Medical Payments – Up to $10K/event
+                            </p>
+                            <div class="mb-2">Optional Add-Ons:</div>
+                            <p>
+                                Personal Property – Up to $20K ($500 deductible)<br>
+                                Animal Liability – Up to $100K<br>
+                                Pet Damage – Up to $750 ($100 deductible)<br>
+                                Biohazard Clean-Up – Up to $2K
+                            </p>
+                        </div>
+                    </details>
+                    <details class="border rounded-999 p-4 hover:border-theme-secondary transition-colors">
+                        <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999">
+                            Do I need to pay a deductible when filing a claim?
+                            <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
+                        </summary>
+                        <p class="mt-2 text-text-2">Yes, there may be a deductible depending on the claim.</p>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Chat Popup Modal -->
+    <div id="chat-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-md">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-sora">Chat Support</h3>
+                <button id="close-chat-popup" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+            </div>
+            <!-- Dummy Chat Interface -->
+            <div class="h-64 border rounded-md flex flex-col">
+                <div class="flex-1 p-4 overflow-y-auto space-y-4">
+                    <!-- Dummy received message -->
+                    <div class="flex justify-start">
+                        <div class="bg-gray-200 text-gray-800 p-3 rounded-lg max-w-[70%]">
+                            Hi there! How can I help you today?
+                        </div>
+                    </div>
+                    <!-- Dummy sent message -->
+                    <div class="flex justify-end">
+                        <div class="bg-theme-secondary text-white p-3 rounded-lg max-w-[70%]">
+                            I have a question about my insurance coverage.
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t p-4 flex items-center">
+                    <input type="text" placeholder="Type your message..." class="flex-1 border-none outline-none rounded-md px-3 py-2 mr-2">
+                    <button class="bg-theme-secondary text-white px-4 py-2 rounded-md hover:bg-primary-blue transition-colors">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Popup Modal -->
+    <div id="login-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-md">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-sora">Sign In</h3>
+                <button id="close-login-popup" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email or Username</label>
+                    <input type="text" id="email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-theme-secondary focus:border-theme-secondary">
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="password" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-theme-secondary focus:border-theme-secondary">
+                </div>
+                <div class="flex justify-end">
+                    <button class="bg-theme-secondary text-white px-4 py-2 rounded-999 hover:bg-primary-blue transition-colors">Sign In</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const helpButton = document.querySelector('.header-button:first-of-type'); // Assuming Help 24/7 is the first header button
+        const chatPopup = document.getElementById('chat-popup');
+        const closeChatButton = document.getElementById('close-chat-popup');
+
+        const signInButton = document.querySelector('.header-button:last-of-type'); // Assuming Sign in is the last header button
+        const loginPopup = document.getElementById('login-popup');
+        const closeLoginButton = document.getElementById('close-login-popup');
+
+        helpButton.addEventListener('click', () => {
+            chatPopup.classList.remove('hidden');
+        });
+
+        closeChatButton.addEventListener('click', () => {
+            chatPopup.classList.add('hidden');
+        });
+
+        signInButton.addEventListener('click', () => {
+            loginPopup.classList.remove('hidden');
+        });
+
+        closeLoginButton.addEventListener('click', () => {
+            loginPopup.classList.add('hidden');
+        });
+    </script>
+</body>
+</html> 
