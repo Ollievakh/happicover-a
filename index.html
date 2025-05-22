@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.cdnfonts.com/css/nexa" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&display=swap" rel="stylesheet">
     <style>
         * {
             -webkit-font-smoothing: antialiased;
@@ -37,6 +37,11 @@
             text-decoration: none;
         }
 
+        /* Hide default details marker */
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+
         @font-face {
             font-family: 'Nexa';
             src: url('https://fonts.cdnfonts.com/s/15011/NexaBold.woff2') format('woff2'),
@@ -49,7 +54,7 @@
 
         .step-indicator {
             position: relative;
-            padding-left: 2rem;
+            padding-left: 0.5rem;
             font-weight: 700;
         }
 
@@ -201,29 +206,29 @@
 
     <!-- Header -->
     <header class="bg-bg-white w-full">
-        <div class="px-8 py-4 w-full">
-            <div class="flex justify-between items-center">
+        <div class="container mx-auto px-[88px] py-4 w-full">
+            <div class="flex justify-between items-center w-full">
                 <div class="flex items-center">
-                    <span class="text-3xl font-sora text-primary-blue">happipad</span>
-                </div>
+                    <span class="text-4xl font-sora text-primary-blue font-extrabold">happipad</span>
+        </div>
                 <div class="flex items-center space-x-4">
                     <button class="header-button">
                         <span>Help 24/7</span>
-                    </button>
+            </button>
                     <button class="header-button">
                         <span>Sign in</span>
-                    </button>
+            </button>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8">
+    <main class="container mx-auto px-[88px] pb-8 pt-[12px]">
         <div class="flex flex-col gap-3">
             <div class="flex gap-3">
                 <!-- Steps Sidebar -->
-                <div class="bg-bg-white p-4 rounded-lg border border-[#EEF5FD]" style="width: 231px; height: 400px;">
+                <div class="bg-bg-white py-4 pr-4 pl-8 rounded-lg border border-[#EEF5FD]" style="width: 231px; height: 400px;">
                     <div class="mb-6">
                         <h2 class="text-xl text-text-1 pl-4">Steps</h2>
                     </div>
@@ -278,7 +283,7 @@
                             <p class="text-[#3C3F4C]">Date should be in the future.</p>
                         </div>
                         <div class="space-y-4">
-                            <div>
+                        <div>
                                 <label class="block mb-2 text-sm text-[#3C3F4C]">Start date</label>
                                 <input type="date" class="w-full border-[0.5px] border-[#6D6F79] rounded-[4px] px-4 py-2 text-[#3C3F4C] focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300" min="2024-03-20">
                             </div>
@@ -292,15 +297,15 @@
             </div>
 
             <!-- FAQ Section -->
-            <div class="bg-bg-white p-6 rounded-lg border border-[#EEF5FD]">
+            <div class="bg-bg-white px-8 pt-6 pb-6 rounded-lg border border-[#EEF5FD]">
                 <h2 class="text-2xl text-text-1 mb-4">Happicover FAQs</h2>
-                <div class="space-y-2">
-                    <details class="border rounded-999 p-4 hover:border-theme-secondary transition-colors">
-                        <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999">
+                <div class="space-y-1 divide-y divide-gray-300">
+                    <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
+                        <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
                             What does the coverage include?
                             <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
                         </summary>
-                        <div class="mt-4 text-text-2">
+                        <div class="mt-4 text-text-2 font-normal">
                             <div class="mb-2">What's Covered:</div>
                             <p class="mb-4">
                                 Bodily Injury – Up to $1M/event<br>
@@ -316,17 +321,79 @@
                             </p>
                         </div>
                     </details>
-                    <details class="border rounded-999 p-4 hover:border-theme-secondary transition-colors">
-                        <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999">
+                    <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
+                        <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
                             Do I need to pay a deductible when filing a claim?
                             <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
                         </summary>
-                        <p class="mt-2 text-text-2">Yes, there may be a deductible depending on the claim.</p>
+                        <div class="mt-4 text-text-2 font-normal">
+                            <p class="mt-2 text-text-2">Yes, there may be a deductible depending on the claim.</p>
+                        </div>
+                    </details>
+                    
+                    <!-- New FAQ Item -->
+                    <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
+                        <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
+                            Who should I reach out to with questions about the coverage?
+                            <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
+                        </summary>
+                        <div class="mt-4 text-text-2 font-normal">
+                            <!-- Placeholder Answer -->
+                            <p>Please reach out to [Contact Information Placeholder].</p>
+                        </div>
+                    </details>
+
+                    <!-- New FAQ Item -->
+                    <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
+                        <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
+                            Can I get a refund if I cancel my coverage?
+                            <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
+                        </summary>
+                        <div class="mt-4 text-text-2 font-normal">
+                            <!-- Placeholder Answer -->
+                            <p>Refund eligibility depends on [Refund Policy Placeholder].</p>
+                        </div>
+                    </details>
+
+                    <!-- New FAQ Item -->
+                    <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
+                        <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
+                            How do I access policy?
+                            <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
+                        </summary>
+                        <div class="mt-4 text-text-2 font-normal">
+                            <!-- Placeholder Answer -->
+                            <p>You can access your policy through [Access Method Placeholder].</p>
+                        </div>
+                    </details>
+
+                    <!-- New FAQ Item -->
+                    <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
+                        <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
+                            How to make a claim?
+                            <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
+                        </summary>
+                        <div class="mt-4 text-text-2 font-normal">
+                            <!-- Placeholder Answer -->
+                            <p>To make a claim, follow [Claim Process Placeholder].</p>
+                        </div>
+                    </details>
+
+                    <!-- New FAQ Item -->
+                    <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
+                        <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
+                            How to cancel policy?
+                            <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
+                        </summary>
+                        <div class="mt-4 text-text-2 font-normal">
+                            <!-- Placeholder Answer -->
+                            <p>To cancel your policy, follow [Cancellation Process Placeholder].</p>
+                        </div>
                     </details>
                 </div>
             </div>
         </div>
-    </main>
+        </main>
 
     <!-- Chat Popup Modal -->
     <div id="chat-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
@@ -407,51 +474,21 @@
             loginPopup.classList.add('hidden');
         });
     </script>
-<footer style="
-  position: relative;
-  background-color: #2A4B73;
-  color: #D7DCE4;
-  padding: 20px;
-  padding-bottom: 80px; /* space for bottom container */
-  text-align: center;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  font-size: 16px;
-  font-family: Arial, sans-serif;
-  margin-top: 328px;
-  min-height: 328px;
-  box-sizing: border-box;
-">
-  <div style="margin-bottom: 20px; max-width: 600px; margin-left: auto; margin-right: auto;">
-    Happipad.org is a Canadian federally incorporated nonprofit on a mission to make home sharing safe, affordable, and accessible to those who can benefit most.
-  </div>
-  <div style="
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    background-color: #203F65;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-  ">
-    <a href="/privacy-policy" style="
-      color: #A2B2CB;
-      font-size: 16px;
-      font-family: 'Nexa Regular', sans-serif;
-      text-decoration: none;
-    ">Privacy policy</a>
-    <a href="/terms-of-use" style="
-      color: #A2B2CB;
-      font-size: 16px;
-      font-family: 'Nexa Regular', sans-serif;
-      text-decoration: none;
-    ">Terms of use</a>
-  </div>
-</footer>
 
+    <footer class="relative bg-[#2A4B73] pt-5 pb-20 text-center rounded-t-[32px] font-nexa text-base mt-[328px] min-h-[328px] box-border flex flex-col justify-center">
+        <div class="max-w-xl mx-auto font-medium text-[#D7DCE4] leading-[1.5] my-auto">
+            <!-- Happipad text instead of Logo -->
+            <div class="font-sora font-extrabold text-[#D7DCE4] text-[44px] mb-4">happipad</div>
+            Happipad.org is a Canadian federally incorporated nonprofit on a mission to make home sharing safe, affordable, and accessible to those can benefit most.
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-[60px] bg-[#203F65] flex justify-center items-center gap-8 rounded-b-2xl">
+            <a href="/privacy-policy" class="text-[#A2B2CB] text-base font-nexa font-normal no-underline hover:underline transition">
+                Privacy policy
+            </a>
+            <a href="/terms-of-use" class="text-[#A2B2CB] text-base font-nexa font-normal no-underline hover:underline transition">
+                Terms of use
+            </a>
+        </div>
+    </footer>
+</body>
 </html> 
