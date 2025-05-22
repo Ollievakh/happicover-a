@@ -212,6 +212,101 @@
             outline-offset: 4px;
             background-color: #F2F6FA;
         }
+
+        input[type="radio"]:checked + div {
+            position: relative;
+        }
+        input[type="radio"]:checked + div::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            right: -6px;
+            bottom: -6px;
+            border: 2px solid #4869AF;
+            border-radius: 20px;
+            pointer-events: none;
+            z-index: 1;
+            background: transparent;
+        }
+
+        /* Plan Selection Styles */
+        .plan-card {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .plan-card input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .plan-card input[type="radio"]:checked + div {
+            background-color: #F2F6FA;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .plan-card input[type="radio"]:checked + div::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border: 1px solid #4869AF;
+            border-radius: 20px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .plan-card .radio-button {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 24px;
+            height: 24px;
+            border: 1px solid #4869AF;
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .plan-card input[type="radio"]:checked + div .radio-button {
+            background-color: #4869AF;
+        }
+
+        .plan-card input[type="radio"]:checked + div .radio-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        .plan-card .check-icon {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #4869AF;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        input[type="radio"]:checked + div .check-icon {
+            display: flex;
+        }
     </style>
     <script>
         tailwind.config = {
@@ -1018,80 +1113,76 @@
                             </div>
                             <div class="grid grid-cols-2 gap-6">
                                 <!-- Basic Plan -->
-                                <label class="relative bg-[#F2F6FA] rounded-lg p-6 hover:border-theme-secondary transition-colors cursor-pointer">
-                                    <input type="radio" name="plan" value="basic" class="absolute opacity-0">
-                                    <div class="flex flex-col h-full">
-                                        <div class="flex justify-between items-start mb-4">
-                                            <div>
-                                                <h3 class="text-xl font-bold text-text-1 mb-2">Annual Plan</h3>
-                                                <p class="text-text-secondary-2">Pay $240 annually</p>
+                                <label class="plan-card">
+                                    <input type="radio" name="plan" value="basic">
+                                    <div class="bg-[#F2F6FA] rounded-[16px] p-6 cursor-pointer">
+                                        <div class="flex flex-col h-full">
+                                            <div class="flex justify-between items-start mb-4">
+                                                <div>
+                                                    <h3 class="text-xl font-bold text-text-1 mb-2">Annual Plan</h3>
+                                                    <p class="text-text-secondary-2">Pay $240 annually</p>
+                                                </div>
+                                                <div class="radio-button"></div>
                                             </div>
-                                            <div class="text-right">
+                                            <ul class="space-y-3 mb-4 flex-grow">
+                                                <li class="flex items-start">
+                                                    <img src="img/check.svg" alt="Included" class="w-5 h-5 mr-2 mt-0.5">
+                                                    <span>Bodily Injury – Up to $1M/event</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <img src="img/check.svg" alt="Included" class="w-5 h-5 mr-2 mt-0.5">
+                                                    <span>Property Damage – Up to $100K/event</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <img src="img/check.svg" alt="Included" class="w-5 h-5 mr-2 mt-0.5">
+                                                    <span>Medical Payments – Up to $10K/event</span>
+                                                </li>
+                                            </ul>
+                                            <div class="text-right mt-4">
                                                 <div class="text-2xl font-bold text-theme-secondary">$20</div>
                                                 <div class="text-text-secondary-2">per month</div>
-                                            </div>
-                                        </div>
-                                        <ul class="space-y-3 mb-4 flex-grow">
-                                            <li class="flex items-start">
-                                                <img src="img/check.svg" alt="Included" class="w-5 h-5 mr-2 mt-0.5">
-                                                <span>Bodily Injury – Up to $1M/event</span>
-                                            </li>
-                                            <li class="flex items-start">
-                                                <img src="img/check.svg" alt="Included" class="w-5 h-5 mr-2 mt-0.5">
-                                                <span>Property Damage – Up to $100K/event</span>
-                                            </li>
-                                            <li class="flex items-start">
-                                                <img src="img/check.svg" alt="Included" class="w-5 h-5 mr-2 mt-0.5">
-                                                <span>Medical Payments – Up to $10K/event</span>
-                                            </li>
-                                        </ul>
-                                        <div class="flex items-center justify-center mt-4">
-                                            <div class="w-6 h-6 border-2 border-theme-secondary rounded-full flex items-center justify-center">
-                                                <div class="w-3 h-3 bg-theme-secondary rounded-full hidden"></div>
                                             </div>
                                         </div>
                                     </div>
                                 </label>
 
                                 <!-- Premium Plan -->
-                                <label class="relative bg-[#F2F6FA] rounded-lg p-6 hover:border-theme-secondary transition-colors cursor-pointer">
-                                    <input type="radio" name="plan" value="premium" class="absolute opacity-0">
-                                    <div class="flex flex-col h-full">
-                                        <div class="flex justify-between items-start mb-4">
-                                            <div>
-                                                <h3 class="text-xl font-bold text-text-1 mb-2">Monthly Plan</h3>
-                                                <p class="text-text-secondary-2">Comprehensive coverage with additional benefits</p>
+                                <label class="plan-card">
+                                    <input type="radio" name="plan" value="premium">
+                                    <div class="bg-[#F2F6FA] rounded-[16px] p-6 cursor-pointer">
+                                        <div class="flex flex-col h-full">
+                                            <div class="flex justify-between items-start mb-4">
+                                                <div>
+                                                    <h3 class="text-xl font-bold text-text-1 mb-2">Monthly Plan</h3>
+                                                    <p class="text-text-secondary-2">Pay $22 monthly</p>
+                                                </div>
+                                                <div class="radio-button"></div>
                                             </div>
-                                            <div class="text-right">
+                                            <ul class="space-y-3 mb-4 flex-grow">
+                                                <li class="flex items-start">
+                                                    <img src="img/check.svg" alt="Included" class="w-5 h-5 mr-2 mt-0.5">
+                                                    <span>All Basic Plan features</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <img src="img/check.svg" alt="Included" class="w-5 h-5 mr-2 mt-0.5">
+                                                    <span>Personal Property – Up to $20K</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <img src="img/check.svg" alt="Included" class="w-5 h-5 mr-2 mt-0.5">
+                                                    <span>Animal Liability – Up to $100K</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <img src="img/check.svg" alt="Included" class="w-5 h-5 mr-2 mt-0.5">
+                                                    <span>Pet Damage – Up to $750</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <img src="img/check.svg" alt="Included" class="w-5 h-5 mr-2 mt-0.5">
+                                                    <span>Biohazard Clean-Up – Up to $2K</span>
+                                                </li>
+                                            </ul>
+                                            <div class="text-right mt-4">
                                                 <div class="text-2xl font-bold text-theme-secondary">$22</div>
                                                 <div class="text-text-secondary-2">per month</div>
-                                            </div>
-                                        </div>
-                                        <ul class="space-y-3 mb-4 flex-grow">
-                                            <li class="flex items-start">
-                                                <img src="img/check.svg" alt="Included" class="w-5 h-5 mr-2 mt-0.5">
-                                                <span>All Basic Plan features</span>
-                                            </li>
-                                            <li class="flex items-start">
-                                                <img src="img/check.svg" alt="Included" class="w-5 h-5 mr-2 mt-0.5">
-                                                <span>Personal Property – Up to $20K</span>
-                                            </li>
-                                            <li class="flex items-start">
-                                                <img src="img/check.svg" alt="Included" class="w-5 h-5 mr-2 mt-0.5">
-                                                <span>Animal Liability – Up to $100K</span>
-                                            </li>
-                                            <li class="flex items-start">
-                                                <img src="img/check.svg" alt="Included" class="w-5 h-5 mr-2 mt-0.5">
-                                                <span>Pet Damage – Up to $750</span>
-                                            </li>
-                                            <li class="flex items-start">
-                                                <img src="img/check.svg" alt="Included" class="w-5 h-5 mr-2 mt-0.5">
-                                                <span>Biohazard Clean-Up – Up to $2K</span>
-                                            </li>
-                                        </ul>
-                                        <div class="flex items-center justify-center mt-4">
-                                            <div class="w-6 h-6 border-2 border-theme-secondary rounded-full flex items-center justify-center">
-                                                <div class="w-3 h-3 bg-theme-secondary rounded-full hidden"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -1099,19 +1190,27 @@
                             </div>
 
                             <style>
-                                input[type="radio"]:checked + div .w-3.h-3 {
-                                    display: block;
-                                }
                                 input[type="radio"]:checked + div {
-                                    outline: 2px solid #4869AF;
-                                    outline-offset: 4px;
-                                    background-color: #F2F6FA;
+                                    position: relative;
+                                }
+                                input[type="radio"]:checked + div::before {
+                                    content: '';
+                                    position: absolute;
+                                    top: -6px;
+                                    left: -6px;
+                                    right: -6px;
+                                    bottom: -6px;
+                                    border: 2px solid #4869AF;
+                                    border-radius: 20px;
+                                    pointer-events: none;
+                                    z-index: 1;
+                                    background: transparent;
                                 }
                             </style>
 
                             <div class="flex gap-3 mt-auto pt-6">
                                 <button id="back-button-5" class="border border-theme-secondary text-theme-secondary px-6 pt-[16px] pb-[11px] rounded-999 hover:bg-secondary-blue transition-colors flex items-center justify-center" style="width: 100px;">Back</button>
-                                <button id="continue-button-5" class="bg-theme-secondary text-white px-6 pt-[16px] pb-[11px] rounded-999 hover:bg-primary-blue transition-colors flex-1 flex items-center justify-center">Continue</button>
+                                <button id="continue-button-5" class="bg-theme-secondary text-white px-6 pt-[16px] pb-[11px] rounded-999 hover:bg-primary-blue transition-colors flex-1 flex items-center justify-center">Pick plan</button>
                             </div>
                         </div>
                     </div>
@@ -1414,7 +1513,7 @@
 
     <!-- Chat Popup Modal -->
     <div id="chat-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-        <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-md">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-md border border-[#EEF5FD]">
             <div class="flex justify-between items-center mb-4">
                 <h3 class="text-xl font-sora">Chat Support</h3>
                 <button id="close-chat-popup" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
@@ -1445,7 +1544,7 @@
 
     <!-- Login Popup Modal -->
     <div id="login-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-        <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-md">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-md border border-[#EEF5FD]">
             <div class="flex justify-between items-center mb-4">
                 <h3 class="text-xl font-sora">Sign In</h3>
                 <button id="close-login-popup" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
@@ -1468,12 +1567,16 @@
 
     <!-- Payment Details Popup Modal -->
     <div id="payment-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-        <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-md">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-md border border-[#EEF5FD]">
             <div class="flex justify-between items-center mb-4">
                 <h3 class="text-xl font-sora">Payment Details</h3>
                 <button id="close-payment-popup" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
             </div>
             <div class="space-y-4">
+                <!-- Test Payment Note -->
+                <div class="text-red-500 text-sm mb-2">
+                    Please enter any numbers, it's a test.
+                </div>
                 <!-- Card Number -->
                 <div>
                     <label class="block mb-2 text-sm text-[#3C3F4C]">Card Number</label>
@@ -1528,7 +1631,7 @@
 
     <!-- Payment Confirmation Popup Modal -->
     <div id="confirmation-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-        <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-md">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-md border border-[#EEF5FD]">
             <div class="flex justify-between items-center mb-4">
                 <h3 class="text-xl font-sora">Payment Successful!</h3>
                 <button id="close-confirmation-popup" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
@@ -1553,7 +1656,7 @@
 
     <!-- Account Creation Popup Modal -->
     <div id="account-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-        <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-md">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-md border border-[#EEF5FD]">
             <div class="flex justify-between items-center mb-4">
                 <h3 class="text-xl font-sora">Create Your Account</h3>
                 <button id="close-account-popup" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
@@ -1578,43 +1681,82 @@
 
     <!-- Dashboard Page (Initially Hidden) -->
     <div id="dashboard-page" class="hidden">
-        <div class="container mx-auto px-[88px] py-8">
-            <div class="bg-white rounded-lg shadow-lg p-6">
-                <div class="flex justify-between items-center mb-6">
-                    <h1 class="text-3xl font-sora text-text-1">Dashboard</h1>
-                    <button id="sign-out-button" class="text-theme-secondary hover:text-primary-blue">Sign Out</button>
-                </div>
-                
-                <!-- Policy Summary -->
-                <div class="bg-[#F2F6FA] rounded-lg p-6 mb-6">
-                    <h2 class="text-xl font-bold text-text-1 mb-4">Your Policy</h2>
-                    <div class="grid grid-cols-2 gap-6">
-                        <div>
-                            <h3 class="font-bold text-text-1 mb-2">Annual Plan</h3>
-                            <p class="text-text-secondary-2">Active until March 20, 2025</p>
-                        </div>
-                        <div class="text-right">
-                            <div class="text-2xl font-bold text-theme-secondary">$240.00</div>
-                            <div class="text-text-secondary-2">$20.00/month</div>
-                        </div>
+        <!-- Header -->
+        <header class="bg-bg-white w-full border-b border-[#EEF5FD]">
+            <div class="container mx-auto px-[88px] py-4 w-full">
+                <div class="flex justify-between items-center w-full">
+                    <div class="flex items-center">
+                        <span class="text-4xl font-sora text-primary-blue font-extrabold">happipad</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button class="header-button">
+                            <span>Help 24/7</span>
+                        </button>
+                        <button id="sign-out-button" class="header-button">
+                            <span>Sign out</span>
+                        </button>
                     </div>
                 </div>
+            </div>
+        </header>
 
-                <!-- Coverage Details -->
-                <div class="bg-[#F2F6FA] rounded-lg p-6">
-                    <h2 class="text-xl font-bold text-text-1 mb-4">Coverage Details</h2>
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-center">
-                            <span class="text-text-secondary-2">Bodily Injury Coverage</span>
-                            <span class="text-text-1 font-bold">$1M/event</span>
+        <div class="container mx-auto px-[88px] py-8">
+            <div class="flex gap-6">
+                <!-- Sidebar -->
+                <div class="w-64 bg-white rounded-lg p-6 border border-[#EEF5FD]">
+                    <nav class="space-y-4">
+                        <a href="#" class="flex items-center space-x-3 text-theme-secondary font-bold">
+                            <img src="img/dashboard.svg" alt="Dashboard" class="w-5 h-5">
+                            <span>Dashboard</span>
+                        </a>
+                        <a href="#" class="flex items-center space-x-3 text-text-secondary-2 hover:text-theme-secondary transition-colors">
+                            <img src="img/profile.svg" alt="Profile" class="w-5 h-5">
+                            <span>Profile</span>
+                        </a>
+                        <a href="#" class="flex items-center space-x-3 text-text-secondary-2 hover:text-theme-secondary transition-colors">
+                            <img src="img/settings.svg" alt="Settings" class="w-5 h-5">
+                            <span>Settings</span>
+                        </a>
+                    </nav>
+                </div>
+
+                <!-- Main Content -->
+                <div class="flex-1">
+                    <div class="bg-white rounded-lg p-6 border border-[#EEF5FD]">
+                        <h1 class="text-3xl font-sora text-text-1 mb-6">Dashboard</h1>
+                        
+                        <!-- Policy Summary -->
+                        <div class="bg-[#F2F6FA] rounded-lg p-6 mb-6 border border-[#EEF5FD]">
+                            <h2 class="text-xl font-bold text-text-1 mb-4">Your Policy</h2>
+                            <div class="grid grid-cols-2 gap-6">
+                                <div>
+                                    <h3 class="font-bold text-text-1 mb-2">Annual Plan</h3>
+                                    <p class="text-text-secondary-2">Active until March 20, 2025</p>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-2xl font-bold text-theme-secondary">$240.00</div>
+                                    <div class="text-text-secondary-2">$20.00/month</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-text-secondary-2">Property Damage Coverage</span>
-                            <span class="text-text-1 font-bold">$100K/event</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-text-secondary-2">Medical Payments</span>
-                            <span class="text-text-1 font-bold">$10K/event</span>
+
+                        <!-- Coverage Details -->
+                        <div class="bg-[#F2F6FA] rounded-lg p-6 border border-[#EEF5FD]">
+                            <h2 class="text-xl font-bold text-text-1 mb-4">Coverage Details</h2>
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-text-secondary-2">Bodily Injury Coverage</span>
+                                    <span class="text-text-1 font-bold">$1M/event</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-text-secondary-2">Property Damage Coverage</span>
+                                    <span class="text-text-1 font-bold">$100K/event</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-text-secondary-2">Medical Payments</span>
+                                    <span class="text-text-1 font-bold">$10K/event</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1627,6 +1769,110 @@
         document.addEventListener('DOMContentLoaded', function() {
             console.log('DOM loaded');
             
+            // Function to show error message
+            function showError(input, message) {
+                const errorDiv = input.nextElementSibling;
+                if (!errorDiv || !errorDiv.classList.contains('error-message')) {
+                    const div = document.createElement('div');
+                    div.className = 'error-message text-red-500 text-sm mt-1';
+                    div.textContent = message;
+                    input.parentNode.insertBefore(div, input.nextSibling);
+                }
+                input.classList.add('border-red-500');
+            }
+
+            // Function to clear error message
+            function clearError(input) {
+                const errorDiv = input.nextElementSibling;
+                if (errorDiv && errorDiv.classList.contains('error-message')) {
+                    errorDiv.remove();
+                }
+                input.classList.remove('border-red-500');
+            }
+
+            // Function to validate step 1 (Address)
+            function validateStep1() {
+                let isValid = true;
+                const inputs = document.querySelectorAll('#step-content-1 input');
+                inputs.forEach(input => {
+                    if (!input.value.trim()) {
+                        showError(input, 'This field is required');
+                        isValid = false;
+                    } else {
+                        clearError(input);
+                    }
+                });
+                return isValid;
+            }
+
+            // Function to validate step 2 (Start Date)
+            function validateStep2() {
+                const dateInput = document.querySelector('#step-content-2 input[type="date"]');
+                if (!dateInput.value) {
+                    showError(dateInput, 'Please select a start date');
+                    return false;
+                }
+                clearError(dateInput);
+                return true;
+            }
+
+            // Function to validate step 3 (Personal Details)
+            function validateStep3() {
+                let isValid = true;
+                const inputs = document.querySelectorAll('#step-content-3 input');
+                inputs.forEach(input => {
+                    if (!input.value.trim()) {
+                        showError(input, 'This field is required');
+                        isValid = false;
+                    } else {
+                        clearError(input);
+                    }
+                });
+                return isValid;
+            }
+
+            // Function to validate step 4 (Contact Info)
+            function validateStep4() {
+                let isValid = true;
+                const emailInput = document.querySelector('#step-content-4 input[type="email"]');
+                const phoneInput = document.querySelector('#step-content-4 input[type="tel"]');
+
+                if (!emailInput.value.trim()) {
+                    showError(emailInput, 'Email is required');
+                    isValid = false;
+                } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)) {
+                    showError(emailInput, 'Please enter a valid email address');
+                    isValid = false;
+                } else {
+                    clearError(emailInput);
+                }
+
+                // Phone number is optional, only validate if something is entered
+                if (phoneInput.value.trim() && !/^\+?[\d\s-()]+$/.test(phoneInput.value)) {
+                    showError(phoneInput, 'Please enter a valid phone number');
+                    isValid = false;
+                } else {
+                    clearError(phoneInput);
+                }
+
+                return isValid;
+            }
+
+            // Function to validate step 5 (Plan Selection)
+            function validateStep5() {
+                const selectedPlan = document.querySelector('input[name="plan"]:checked');
+                if (!selectedPlan) {
+                    const planContainer = document.querySelector('#step-content-5 .grid');
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'error-message text-red-500 text-sm mt-2';
+                    errorDiv.textContent = 'Please select a plan';
+                    planContainer.appendChild(errorDiv);
+                    return false;
+                }
+                return true;
+            }
+
+            // Get all button elements
             const helpButton = document.querySelector('.header-button:first-of-type');
             const chatPopup = document.getElementById('chat-popup');
             const closeChatButton = document.getElementById('close-chat-popup');
@@ -1648,80 +1894,125 @@
             const createAccountSubmit = document.getElementById('create-account-submit');
             const payButton = document.querySelector('#payment-popup .bg-theme-secondary');
 
+            // Chat popup functionality
+            if (helpButton) {
+                helpButton.addEventListener('click', () => {
+                    chatPopup.classList.remove('hidden');
+                });
+            }
+
+            if (closeChatButton) {
+                closeChatButton.addEventListener('click', () => {
+                    chatPopup.classList.add('hidden');
+                });
+            }
+
+            // Login popup functionality
+            if (signInButton) {
+                signInButton.addEventListener('click', () => {
+                    loginPopup.classList.remove('hidden');
+                });
+            }
+
+            if (closeLoginButton) {
+                closeLoginButton.addEventListener('click', () => {
+                    loginPopup.classList.add('hidden');
+                });
+            }
+
             // Payment flow
-            continueButton6.addEventListener('click', () => {
-                paymentPopup.classList.remove('hidden');
-            });
+            if (continueButton6) {
+                continueButton6.addEventListener('click', () => {
+                    paymentPopup.classList.remove('hidden');
+                });
+            }
 
-            closePaymentButton.addEventListener('click', () => {
-                paymentPopup.classList.add('hidden');
-            });
+            if (closePaymentButton) {
+                closePaymentButton.addEventListener('click', () => {
+                    paymentPopup.classList.add('hidden');
+                });
+            }
 
-            payButton.addEventListener('click', () => {
-                paymentPopup.classList.add('hidden');
-                confirmationPopup.classList.remove('hidden');
-            });
+            if (payButton) {
+                payButton.addEventListener('click', () => {
+                    paymentPopup.classList.add('hidden');
+                    confirmationPopup.classList.remove('hidden');
+                });
+            }
 
-            closeConfirmationButton.addEventListener('click', () => {
-                confirmationPopup.classList.add('hidden');
-            });
+            if (closeConfirmationButton) {
+                closeConfirmationButton.addEventListener('click', () => {
+                    confirmationPopup.classList.add('hidden');
+                });
+            }
 
             // Account creation flow
-            createAccountButton.addEventListener('click', () => {
-                console.log('Create account button clicked');
-                confirmationPopup.classList.add('hidden');
-                accountPopup.classList.remove('hidden');
-            });
+            if (createAccountButton) {
+                createAccountButton.addEventListener('click', () => {
+                    console.log('Create account button clicked');
+                    confirmationPopup.classList.add('hidden');
+                    accountPopup.classList.remove('hidden');
+                });
+            }
 
-            notNowButton.addEventListener('click', () => {
-                confirmationPopup.classList.add('hidden');
-            });
+            if (notNowButton) {
+                notNowButton.addEventListener('click', () => {
+                    confirmationPopup.classList.add('hidden');
+                });
+            }
 
-            closeAccountButton.addEventListener('click', () => {
-                accountPopup.classList.add('hidden');
-            });
+            if (closeAccountButton) {
+                closeAccountButton.addEventListener('click', () => {
+                    accountPopup.classList.add('hidden');
+                });
+            }
 
-            createAccountSubmit.addEventListener('click', () => {
-                const password = document.getElementById('account-password').value;
-                const termsChecked = document.getElementById('terms-account').checked;
+            if (createAccountSubmit) {
+                createAccountSubmit.addEventListener('click', () => {
+                    const password = document.getElementById('account-password').value;
+                    const termsChecked = document.getElementById('terms-account').checked;
 
-                if (!password) {
-                    alert('Please create a password');
-                    return;
-                }
+                    if (!password) {
+                        alert('Please create a password');
+                        return;
+                    }
 
-                if (!termsChecked) {
-                    alert('Please agree to the Terms and Conditions');
-                    return;
-                }
+                    if (!termsChecked) {
+                        alert('Please agree to the Terms and Conditions');
+                        return;
+                    }
 
-                // Hide all other content
-                document.querySelector('main').classList.add('hidden');
-                document.querySelector('header').classList.add('hidden');
-                document.querySelector('footer').classList.add('hidden');
-                
-                // Show dashboard
-                document.getElementById('dashboard-page').classList.remove('hidden');
-                
-                // Hide the account popup
-                accountPopup.classList.add('hidden');
-            });
+                    // Hide all other content
+                    document.querySelector('main').classList.add('hidden');
+                    document.querySelector('header').classList.add('hidden');
+                    document.querySelector('footer').classList.add('hidden');
+                    
+                    // Show dashboard
+                    document.getElementById('dashboard-page').classList.remove('hidden');
+                    
+                    // Hide the account popup
+                    accountPopup.classList.add('hidden');
+                });
+            }
 
             // Sign out functionality
-            document.getElementById('sign-out-button').addEventListener('click', () => {
-                // Hide dashboard
-                document.getElementById('dashboard-page').classList.add('hidden');
-                
-                // Show main content
-                document.querySelector('main').classList.remove('hidden');
-                document.querySelector('header').classList.remove('hidden');
-                document.querySelector('footer').classList.remove('hidden');
-                
-                // Reset to first step
-                showStep(1);
-            });
+            const signOutButton = document.getElementById('sign-out-button');
+            if (signOutButton) {
+                signOutButton.addEventListener('click', () => {
+                    // Hide dashboard
+                    document.getElementById('dashboard-page').classList.add('hidden');
+                    
+                    // Show main content
+                    document.querySelector('main').classList.remove('hidden');
+                    document.querySelector('header').classList.remove('hidden');
+                    document.querySelector('footer').classList.remove('hidden');
+                    
+                    // Reset to first step
+                    showStep(1);
+                });
+            }
 
-            // --- Step Navigation Logic ---
+            // Step navigation elements
             const step1Content = document.getElementById('step-content-1');
             const step2Content = document.getElementById('step-content-2');
             const step3Content = document.getElementById('step-content-3');
@@ -1739,8 +2030,6 @@
             const backButton5 = document.getElementById('back-button-5');
             const continueButton5 = document.getElementById('continue-button-5');
             const backButton6 = document.getElementById('back-button-6');
-
-            console.log('Continue button 5:', continueButton5);
 
             // Function to show a specific step and hide others
             function showStep(stepNumber) {
@@ -1789,10 +2078,12 @@
                 });
             }
 
-            // Event Listeners for navigation buttons
+            // Event Listeners for navigation buttons with validation
             if (continueButton1) {
                 continueButton1.addEventListener('click', () => {
-                    showStep(2);
+                    if (validateStep1()) {
+                        showStep(2);
+                    }
                 });
             }
 
@@ -1804,7 +2095,9 @@
 
             if (continueButton2) {
                 continueButton2.addEventListener('click', () => {
-                    showStep(3);
+                    if (validateStep2()) {
+                        showStep(3);
+                    }
                 });
             }
 
@@ -1816,7 +2109,9 @@
 
             if (continueButton3) {
                 continueButton3.addEventListener('click', () => {
-                    showStep(4);
+                    if (validateStep3()) {
+                        showStep(4);
+                    }
                 });
             }
 
@@ -1828,7 +2123,9 @@
 
             if (continueButton4) {
                 continueButton4.addEventListener('click', () => {
-                    showStep(5);
+                    if (validateStep4()) {
+                        showStep(5);
+                    }
                 });
             }
 
@@ -1839,10 +2136,10 @@
             }
 
             if (continueButton5) {
-                console.log('Adding click listener to continue button 5');
                 continueButton5.addEventListener('click', () => {
-                    console.log('Continue button 5 clicked');
-                    showStep(6);
+                    if (validateStep5()) {
+                        showStep(6);
+                    }
                 });
             }
 
@@ -1851,6 +2148,13 @@
                     showStep(5);
                 });
             }
+
+            // Add input event listeners to clear errors when user starts typing
+            document.querySelectorAll('input').forEach(input => {
+                input.addEventListener('input', () => {
+                    clearError(input);
+                });
+            });
 
             // Initialize: Show the first step when the page loads
             showStep(1);
