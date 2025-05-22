@@ -225,174 +225,351 @@
 
     <!-- Main Content -->
     <main class="container mx-auto px-[88px] pb-8 pt-[12px]">
-        <div class="flex flex-col gap-3">
-            <div class="flex gap-3">
-                <!-- Steps Sidebar -->
-                <div class="bg-bg-white py-4 pr-4 pl-8 rounded-lg border border-[#EEF5FD]" style="width: 231px; height: 400px;">
-                    <div class="mb-6">
-                        <h2 class="text-xl text-text-1 pl-4">Steps</h2>
-                    </div>
-                    <div class="relative">
-                        <div class="vertical-progress" style="height: calc(100% - 1rem);"></div>
-                        <div class="space-y-4">
-                            <div class="step-indicator active">
-                                <div class="indicator"></div>
-                                <div class="ml-4">
-                                    <div class="text-theme-secondary">Address</div>
-                                </div>
-                            </div>
-                            <div class="step-indicator">
-                                <div class="indicator"></div>
-                                <div class="ml-4">
-                                    <div class="text-text-secondary-2">Start date</div>
-                                </div>
-                            </div>
-                            <div class="step-indicator">
-                                <div class="indicator"></div>
-                                <div class="ml-4">
-                                    <div class="text-text-secondary-2">Personal details</div>
-                                </div>
-                            </div>
-                            <div class="step-indicator">
-                                <div class="indicator"></div>
-                                <div class="ml-4">
-                                    <div class="text-text-secondary-2">Contact info</div>
-                                </div>
-                            </div>
-                            <div class="step-indicator">
-                                <div class="indicator"></div>
-                                <div class="ml-4">
-                                    <div class="text-text-secondary-2">Pick your plan</div>
-                                </div>
-                            </div>
-                            <div class="step-indicator">
-                                <div class="indicator"></div>
-                                <div class="ml-4">
-                                    <div class="text-text-secondary-2">Payment</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Question Section -->
-                <div class="flex-1">
-                    <div class="bg-bg-white p-6 rounded-lg h-full flex flex-col border border-[#EEF5FD]">
+        <div id="step-content-1">
+            <div class="flex flex-col gap-3">
+                <div class="flex gap-3">
+                    <!-- Steps Sidebar -->
+                    <div class="bg-bg-white py-4 pr-4 pl-8 rounded-lg border border-[#EEF5FD]" style="width: 231px; height: 400px;">
                         <div class="mb-6">
-                            <h1 class="text-3xl text-text-1 mb-2">What's your insurance start date?</h1>
-                            <p class="text-[#3C3F4C]">Date should be in the future.</p>
+                            <h2 class="text-xl text-text-1 pl-4">Steps</h2>
                         </div>
-                        <div class="space-y-4">
-                        <div>
-                                <label class="block mb-2 text-sm text-[#3C3F4C]">Start date</label>
-                                <input type="date" class="w-full border-[0.5px] border-[#6D6F79] rounded-[4px] px-4 py-2 text-[#3C3F4C] focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300" min="2024-03-20">
+                        <div class="relative">
+                            <div class="vertical-progress" style="height: calc(100% - 1rem);"></div>
+                            <div class="space-y-1 divide-y divide-gray-300">
+                                <div class="step-indicator active">
+                                    <div class="indicator"></div>
+                                    <div class="ml-4">
+                                        <div class="text-theme-secondary">Address</div>
+                                    </div>
+                                </div>
+                                <div class="step-indicator">
+                                    <div class="indicator"></div>
+                                    <div class="ml-4">
+                                        <div class="text-text-secondary-2">Start date</div>
+                                    </div>
+                                </div>
+                                <div class="step-indicator">
+                                    <div class="indicator"></div>
+                                    <div class="ml-4">
+                                        <div class="text-text-secondary-2">Personal details</div>
+                                    </div>
+                                </div>
+                                <div class="step-indicator">
+                                    <div class="indicator"></div>
+                                    <div class="ml-4">
+                                        <div class="text-text-secondary-2">Contact info</div>
+                                    </div>
+                                </div>
+                                <div class="step-indicator">
+                                    <div class="indicator"></div>
+                                    <div class="ml-4">
+                                        <div class="text-text-secondary-2">Pick your plan</div>
+                                    </div>
+                                </div>
+                                <div class="step-indicator">
+                                    <div class="indicator"></div>
+                                    <div class="ml-4">
+                                        <div class="text-text-secondary-2">Payment</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="flex gap-3 mt-auto pt-6">
-                            <button class="border border-theme-secondary text-theme-secondary px-6 pt-[16px] pb-[11px] rounded-999 hover:bg-secondary-blue transition-colors flex items-center justify-center" style="width: 100px;">Back</button>
-                            <button class="bg-theme-secondary text-white px-6 pt-[16px] pb-[11px] rounded-999 hover:bg-primary-blue transition-colors flex-1 flex items-center justify-center">Continue</button>
+                    </div>
+
+                    <!-- Question Section -->
+                    <div class="flex-1">
+                        <div class="bg-bg-white p-6 rounded-lg h-full flex flex-col border border-[#EEF5FD]">
+                            <div class="mb-6">
+                                <h1 class="text-3xl text-text-1 mb-2">What's your insurance start date?</h1>
+                                <p class="text-[#3C3F4C]">Date should be in the future.</p>
+                            </div>
+                            <div class="space-y-4">
+                            <div>
+                                    <label class="block mb-2 text-sm text-[#3C3F4C]">Start date</label>
+                                    <input type="date" class="w-full border-[0.5px] border-[#6D6F79] rounded-[4px] px-4 py-2 text-[#3C3F4C] focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300" min="2024-03-20">
+                                </div>
+                            </div>
+                            <div class="flex gap-3 mt-auto pt-6">
+                                <button id="back-button-1" class="border border-theme-secondary text-theme-secondary px-6 pt-[16px] pb-[11px] rounded-999 hover:bg-secondary-blue transition-colors flex items-center justify-center" style="width: 100px;">Back</button>
+                                <button id="continue-button-1" class="bg-theme-secondary text-white px-6 pt-[16px] pb-[11px] rounded-999 hover:bg-primary-blue transition-colors flex-1 flex items-center justify-center">Continue</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- FAQ Section -->
-            <div class="bg-bg-white px-8 pt-6 pb-6 rounded-lg border border-[#EEF5FD]">
-                <h2 class="text-2xl text-text-1 mb-4">Happicover FAQs</h2>
-                <div class="space-y-1 divide-y divide-gray-300">
-                    <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                        <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                            What does the coverage include?
-                            <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                        </summary>
-                        <div class="mt-4 text-text-2 font-normal">
-                            <div class="mb-2">What's Covered:</div>
-                            <p class="mb-4">
-                                Bodily Injury – Up to $1M/event<br>
-                                Property Damage – Up to $100K/event<br>
-                                Medical Payments – Up to $10K/event
-                            </p>
-                            <div class="mb-2">Optional Add-Ons:</div>
-                            <p>
-                                Personal Property – Up to $20K ($500 deductible)<br>
-                                Animal Liability – Up to $100K<br>
-                                Pet Damage – Up to $750 ($100 deductible)<br>
-                                Biohazard Clean-Up – Up to $2K
-                            </p>
-                        </div>
-                    </details>
-                    <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                        <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                            Do I need to pay a deductible when filing a claim?
-                            <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                        </summary>
-                        <div class="mt-4 text-text-2 font-normal">
-                            <p class="mt-2 text-text-2">Yes, there may be a deductible depending on the claim.</p>
-                        </div>
-                    </details>
-                    
-                    <!-- New FAQ Item -->
-                    <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                        <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                            Who should I reach out to with questions about the coverage?
-                            <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                        </summary>
-                        <div class="mt-4 text-text-2 font-normal">
-                            <!-- Placeholder Answer -->
-                            <p>Please reach out to [Contact Information Placeholder].</p>
-                        </div>
-                    </details>
+                <!-- FAQ Section -->
+                <div class="bg-bg-white px-8 pt-6 pb-6 rounded-lg border border-[#EEF5FD]">
+                    <h2 class="text-2xl text-text-1 mb-4">Happicover FAQs</h2>
+                    <div class="space-y-2 divide-y divide-gray-300">
+                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
+                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
+                                What does the coverage include?
+                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
+                            </summary>
+                            <div class="mt-4 text-text-2 font-normal">
+                                <div class="mb-2">What's Covered:</div>
+                                <p class="mb-4">
+                                    Bodily Injury – Up to $1M/event<br>
+                                    Property Damage – Up to $100K/event<br>
+                                    Medical Payments – Up to $10K/event
+                                </p>
+                                <div class="mb-2">Optional Add-Ons:</div>
+                                <p>
+                                    Personal Property – Up to $20K ($500 deductible)<br>
+                                    Animal Liability – Up to $100K<br>
+                                    Pet Damage – Up to $750 ($100 deductible)<br>
+                                    Biohazard Clean-Up – Up to $2K
+                                </p>
+                            </div>
+                        </details>
+                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
+                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
+                                Do I need to pay a deductible when filing a claim?
+                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
+                            </summary>
+                            <div class="mt-4 text-text-2 font-normal">
+                                <p class="mt-2 text-text-2">Yes, there may be a deductible depending on the claim.</p>
+                            </div>
+                        </details>
+                        
+                        <!-- New FAQ Item -->
+                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
+                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
+                                Who should I reach out to with questions about the coverage?
+                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
+                            </summary>
+                            <div class="mt-4 text-text-2 font-normal">
+                                <!-- Placeholder Answer -->
+                                <p>Please reach out to [Contact Information Placeholder].</p>
+                            </div>
+                        </details>
 
-                    <!-- New FAQ Item -->
-                    <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                        <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                            Can I get a refund if I cancel my coverage?
-                            <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                        </summary>
-                        <div class="mt-4 text-text-2 font-normal">
-                            <!-- Placeholder Answer -->
-                            <p>Refund eligibility depends on [Refund Policy Placeholder].</p>
-                        </div>
-                    </details>
+                        <!-- New FAQ Item -->
+                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
+                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
+                                Can I get a refund if I cancel my coverage?
+                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
+                            </summary>
+                            <div class="mt-4 text-text-2 font-normal">
+                                <!-- Placeholder Answer -->
+                                <p>Refund eligibility depends on [Refund Policy Placeholder].</p>
+                            </div>
+                        </details>
 
-                    <!-- New FAQ Item -->
-                    <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                        <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                            How do I access policy?
-                            <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                        </summary>
-                        <div class="mt-4 text-text-2 font-normal">
-                            <!-- Placeholder Answer -->
-                            <p>You can access your policy through [Access Method Placeholder].</p>
-                        </div>
-                    </details>
+                        <!-- New FAQ Item -->
+                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
+                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
+                                How do I access policy?
+                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
+                            </summary>
+                            <div class="mt-4 text-text-2 font-normal">
+                                <!-- Placeholder Answer -->
+                                <p>You can access your policy through [Access Method Placeholder].</p>
+                            </div>
+                        </details>
 
-                    <!-- New FAQ Item -->
-                    <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                        <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                            How to make a claim?
-                            <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                        </summary>
-                        <div class="mt-4 text-text-2 font-normal">
-                            <!-- Placeholder Answer -->
-                            <p>To make a claim, follow [Claim Process Placeholder].</p>
-                        </div>
-                    </details>
+                        <!-- New FAQ Item -->
+                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
+                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
+                                How to make a claim?
+                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
+                            </summary>
+                            <div class="mt-4 text-text-2 font-normal">
+                                <!-- Placeholder Answer -->
+                                <p>To make a claim, follow [Claim Process Placeholder].</p>
+                            </div>
+                        </details>
 
-                    <!-- New FAQ Item -->
-                    <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                        <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                            How to cancel policy?
-                            <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                        </summary>
-                        <div class="mt-4 text-text-2 font-normal">
-                            <!-- Placeholder Answer -->
-                            <p>To cancel your policy, follow [Cancellation Process Placeholder].</p>
-                        </div>
-                    </details>
+                        <!-- New FAQ Item -->
+                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
+                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
+                                How to cancel policy?
+                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
+                            </summary>
+                            <div class="mt-4 text-text-2 font-normal">
+                                <!-- Placeholder Answer -->
+                                <p>To cancel your policy, follow [Cancellation Process Placeholder].</p>
+                            </div>
+                        </details>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Step 2: Address Step (Initially Hidden) -->
+        <div id="step-content-2" class="hidden">
+             <div class="flex flex-col gap-3">
+                <div class="flex gap-3">
+                     <!-- Steps Sidebar - Could potentially make this a reusable component -->
+                    <div class="bg-bg-white py-4 pr-4 pl-8 rounded-lg border border-[#EEF5FD]" style="width: 231px; height: 400px;">
+                        <div class="mb-6">
+                            <h2 class="text-xl text-text-1 pl-4">Steps</h2>
+                        </div>
+                        <div class="relative">
+                            <div class="vertical-progress" style="height: calc(100% - 1rem);"></div>
+                            <div class="space-y-1 divide-y divide-gray-300">
+                                <div class="step-indicator">
+                                    <div class="indicator"></div>
+                                    <div class="ml-4">
+                                        <div class="text-text-secondary-2">Address</div>
+                                    </div>
+                                </div>
+                                <div class="step-indicator active">
+                                    <div class="indicator"></div>
+                                    <div class="ml-4">
+                                        <div class="text-theme-secondary">Start date</div>
+                                    </div>
+                                </div>
+                                <div class="step-indicator">
+                                    <div class="indicator"></div>
+                                    <div class="ml-4">
+                                        <div class="text-text-secondary-2">Personal details</div>
+                                    </div>
+                                </div>
+                                <div class="step-indicator">
+                                    <div class="indicator"></div>
+                                    <div class="ml-4">
+                                        <div class="text-text-secondary-2">Contact info</div>
+                                    </div>
+                                </div>
+                                <div class="step-indicator">
+                                    <div class="indicator"></div>
+                                    <div class="ml-4">
+                                        <div class="text-text-secondary-2">Pick your plan</div>
+                                    </div>
+                                </div>
+                                <div class="step-indicator">
+                                    <div class="indicator"></div>
+                                    <div class="ml-4">
+                                        <div class="text-text-secondary-2">Payment</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Question Section for Address -->
+                    <div class="flex-1">
+                        <div class="bg-bg-white p-6 rounded-lg h-full flex flex-col border border-[#EEF5FD]">
+                            <div class="mb-6">
+                                <h1 class="text-3xl text-text-1 mb-2">What's your address?</h1>
+                                <p class="text-[#3C3F4C]">Please provide your current address.</p>
+                            </div>
+                            <div class="space-y-4">
+                                <!-- Placeholder Address Fields -->
+                                <div>
+                                    <label class="block mb-2 text-sm text-[#3C3F4C]">Street Address</label>
+                                    <input type="text" class="w-full border-[0.5px] border-[#6D6F79] rounded-[4px] px-4 py-2 text-[#3C3F4C] focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
+                                </div>
+                                <div>
+                                    <label class="block mb-2 text-sm text-[#3C3F4C]">City</label>
+                                    <input type="text" class="w-full border-[0.5px] border-[#6D6F79] rounded-[4px] px-4 py-2 text-[#3C3F4C] focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
+                                </div>
+                                <div>
+                                    <label class="block mb-2 text-sm text-[#3C3F4C]">Province/State</label>
+                                    <input type="text" class="w-full border-[0.5px] border-[#6D6F79] rounded-[4px] px-4 py-2 text-[#3C3F4C] focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
+                        </div>
+                        <div>
+                                    <label class="block mb-2 text-sm text-[#3C3F4C]">Postal/Zip Code</label>
+                                    <input type="text" class="w-full border-[0.5px] border-[#6D6F79] rounded-[4px] px-4 py-2 text-[#3C3F4C] focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
+                                </div>
+                            </div>
+                            <div class="flex gap-3 mt-auto pt-6">
+                                <button id="back-button-2" class="border border-theme-secondary text-theme-secondary px-6 pt-[16px] pb-[11px] rounded-999 hover:bg-secondary-blue transition-colors flex items-center justify-center" style="width: 100px;">Back</button>
+                                <button id="continue-button-2" class="bg-theme-secondary text-white px-6 pt-[16px] pb-[11px] rounded-999 hover:bg-primary-blue transition-colors flex-1 flex items-center justify-center">Continue</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- FAQ Section - Could potentially make this a reusable component -->
+                <div class="bg-bg-white px-8 pt-6 pb-6 rounded-lg border border-[#EEF5FD]">
+                    <h2 class="text-2xl text-text-1 mb-4">Happicover FAQs</h2>
+                    <div class="space-y-2 divide-y divide-gray-300">
+                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
+                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
+                                What does the coverage include?
+                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
+                            </summary>
+                            <div class="mt-4 text-text-2 font-normal">
+                                <div class="mb-2">What's Covered:</div>
+                                <p class="mb-4">
+                                    Bodily Injury – Up to $1M/event<br>
+                                    Property Damage – Up to $100K/event<br>
+                                    Medical Payments – Up to $10K/event
+                                </p>
+                                <div class="mb-2">Optional Add-Ons:</div>
+                                <p>
+                                    Personal Property – Up to $20K ($500 deductible)<br>
+                                    Animal Liability – Up to $100K<br>
+                                    Pet Damage – Up to $750 ($100 deductible)<br>
+                                    Biohazard Clean-Up – Up to $2K
+                                </p>
+                            </div>
+                        </details>
+                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
+                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
+                                Do I need to pay a deductible when filing a claim?
+                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
+                        </summary>
+                            <div class="mt-4 text-text-2 font-normal">
+                                <p class="mt-2 text-text-2">Yes, there may be a deductible depending on the claim.</p>
+                            </div>
+                    </details>
+                        <!-- Remaining FAQ items would be here -->
+                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
+                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
+                                Who should I reach out to with questions about the coverage?
+                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
+                        </summary>
+                            <div class="mt-4 text-text-2 font-normal">
+                                <!-- Placeholder Answer -->
+                                <p>Please reach out to [Contact Information Placeholder].</p>
+                            </div>
+                    </details>
+                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
+                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
+                                Can I get a refund if I cancel my coverage?
+                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
+                        </summary>
+                            <div class="mt-4 text-text-2 font-normal">
+                                <!-- Placeholder Answer -->
+                                <p>Refund eligibility depends on [Refund Policy Placeholder].</p>
+                            </div>
+                    </details>
+                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
+                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
+                                How do I access policy?
+                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
+                        </summary>
+                            <div class="mt-4 text-text-2 font-normal">
+                                <!-- Placeholder Answer -->
+                                <p>You can access your policy through [Access Method Placeholder].</p>
+                            </div>
+                    </details>
+                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
+                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
+                                How to make a claim?
+                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
+                        </summary>
+                            <div class="mt-4 text-text-2 font-normal">
+                                <!-- Placeholder Answer -->
+                                <p>To make a claim, follow [Claim Process Placeholder].</p>
+                            </div>
+                    </details>
+                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
+                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
+                                How to cancel policy?
+                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
+                        </summary>
+                            <div class="mt-4 text-text-2 font-normal">
+                                <!-- Placeholder Answer -->
+                                <p>To cancel your policy, follow [Cancellation Process Placeholder].</p>
+                            </div>
+                    </details>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         </main>
 
     <!-- Chat Popup Modal -->
@@ -473,6 +650,44 @@
         closeLoginButton.addEventListener('click', () => {
             loginPopup.classList.add('hidden');
         });
+
+        // --- Step Navigation Logic ---
+        const step1Content = document.getElementById('step-content-1');
+        const step2Content = document.getElementById('step-content-2');
+
+        const continueButton1 = document.getElementById('continue-button-1');
+        const backButton2 = document.getElementById('back-button-2');
+
+        // Function to show a specific step and hide others
+        function showStep(stepNumber) {
+            if (stepNumber === 1) {
+                step1Content.classList.remove('hidden');
+                step2Content.classList.add('hidden');
+                // TODO: Update sidebar indicators for step 1
+            } else if (stepNumber === 2) {
+                step1Content.classList.add('hidden');
+                step2Content.classList.remove('hidden');
+                 // TODO: Update sidebar indicators for step 2
+            }
+            // Add logic for other steps as needed
+        }
+
+        // Event Listeners for navigation buttons
+        if (continueButton1) {
+            continueButton1.addEventListener('click', () => {
+                showStep(2);
+            });
+        }
+
+        if (backButton2) {
+             backButton2.addEventListener('click', () => {
+                showStep(1);
+            });
+        }
+
+        // Initialize: Show the first step when the page loads
+        showStep(1);
+
     </script>
 
     <footer class="relative bg-[#2A4B73] pt-5 pb-20 text-center rounded-t-[32px] font-nexa text-base mt-[328px] min-h-[328px] box-border flex flex-col justify-center">
