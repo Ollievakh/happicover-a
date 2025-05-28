@@ -279,7 +279,7 @@
                     <div class="space-y-4 mb-[72px]">
                         <div>
                             <label class="block text-sm text-text-secondary-2 mb-1">Start Date</label>
-                            <input type="date" class="w-full border-[0.5px] border-[#6D6F79] rounded-[6px] px-4 py-2 text-text-1 focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
+                            <input type="date" class="w-full border-[0.5px] border-[#6D6F79] rounded-[6px] px-4 py-2 text-text-1 focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300 cursor-pointer" style="cursor: pointer;">
                         </div>
                     </div>
                     <div class="flex gap-4">
@@ -599,6 +599,34 @@
 
         // Function to show a specific step
         function showStep(stepNumber) {
+            // Get the current step
+            const currentStep = document.querySelector('.step-content.active');
+            if (currentStep) {
+                // Check if there are any inputs in the current step
+                const inputs = currentStep.querySelectorAll('input');
+                if (inputs.length > 0) {
+                    // Check if all inputs are filled
+                    let allFilled = true;
+                    // Remove any existing error messages
+                    currentStep.querySelectorAll('.error-message').forEach(msg => msg.remove());
+                    
+                    inputs.forEach(input => {
+                        if (!input.value) {
+                            allFilled = false;
+                            const errorMessage = document.createElement('p');
+                            errorMessage.textContent = 'This field is required';
+                            errorMessage.style.color = 'red';
+                            errorMessage.className = 'error-message';
+                            input.parentNode.appendChild(errorMessage);
+                        }
+                    });
+                    
+                    if (!allFilled) {
+                        return; // Don't proceed to next step if fields are not filled
+                    }
+                }
+            }
+
             // Hide all steps
             document.querySelectorAll('.step-content').forEach(step => {
                 step.classList.remove('active');
@@ -606,12 +634,12 @@
             });
             
             // Show the selected step
-            const currentStep = document.getElementById('step' + stepNumber);
-            if (currentStep) {
-                currentStep.classList.remove('hidden');
+            const nextStep = document.getElementById('step' + stepNumber);
+            if (nextStep) {
+                nextStep.classList.remove('hidden');
                 // Trigger reflow
-                currentStep.offsetHeight;
-                currentStep.classList.add('active');
+                nextStep.offsetHeight;
+                nextStep.classList.add('active');
             }
             
             // Update progress bar
@@ -638,12 +666,38 @@
         // Add click event listeners to all buttons
         document.addEventListener('DOMContentLoaded', () => {
             // Add click handlers for all continue buttons
-            document.querySelectorAll('button[onclick^="showStep"]').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const stepNumber = parseInt(this.getAttribute('onclick').match(/showStep\((\d+)\)/)[1]);
-                    showStep(stepNumber);
-                });
+            document.querySelectorAll('button').forEach(button => {
+                if (button.textContent.trim() === 'Continue') {
+                    button.addEventListener('click', function(e) {
+                        // Get the current step
+                        const currentStep = this.closest('.step-content');
+                        if (currentStep) {
+                            // Get all inputs in the current step
+                            const inputs = currentStep.querySelectorAll('input');
+                            let allFilled = true;
+                            
+                            // Remove any existing error messages
+                            currentStep.querySelectorAll('.error-message').forEach(msg => msg.remove());
+                            
+                            // Check each input
+                            inputs.forEach(input => {
+                                if (!input.value) {
+                                    allFilled = false;
+                                    const errorMessage = document.createElement('p');
+                                    errorMessage.textContent = 'This field is required';
+                                    errorMessage.style.color = 'red';
+                                    errorMessage.className = 'error-message';
+                                    input.parentNode.appendChild(errorMessage);
+                                }
+                            });
+                            
+                            if (!allFilled) {
+                                e.preventDefault();
+                                e.stopPropagation();
+                            }
+                        }
+                    });
+                }
             });
         });
 
