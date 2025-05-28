@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happipad - Insurance Flow</title>
+    <title>Insurance Flow</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.cdnfonts.com/css/nexa" rel="stylesheet">
@@ -37,84 +37,6 @@
             text-decoration: none;
         }
 
-        /* Hide default details marker */
-        details > summary::-webkit-details-marker {
-            display: none;
-        }
-
-        @font-face {
-            font-family: 'Nexa';
-            src: url('https://fonts.cdnfonts.com/s/15011/NexaBold.woff2') format('woff2'),
-                 url('https://fonts.cdnfonts.com/s/15011/NexaBold.woff') format('woff'),
-                 url('https://fonts.cdnfonts.com/s/15011/NexaBold.ttf') format('truetype');
-            font-weight: 700;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        .step-indicator {
-            position: relative;
-            padding-left: 0.5rem;
-            font-weight: 700;
-        }
-
-        .step-indicator::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background-color: var(--secondary-blue);
-        }
-
-        .step-indicator.active::before {
-            background-color: var(--theme-secondary);
-        }
-
-        .step-indicator .indicator {
-            position: absolute;
-            left: -4px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: var(--secondary-blue);
-        }
-
-        .step-indicator.active .indicator {
-            background-color: var(--theme-secondary);
-        }
-
-        .step-indicator.completed .indicator {
-            background-color: var(--theme-secondary);
-        }
-
-        .step-indicator.completed::before {
-            background-color: var(--theme-secondary);
-        }
-
-        .vertical-progress {
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 8px;
-            background-color: #BDC9DB;
-            border-radius: 4px;
-        }
-
-        .progress-fill {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 8px;
-            background-color: #4869AF;
-            border-radius: 4px;
-            transition: height 0.3s ease;
-        }
-
         .rounded-999 {
             border-radius: 999px;
             padding: 8px 16px;
@@ -135,177 +57,92 @@
             color: var(--primary-blue);
         }
 
-        /* Date input styles */
-        input[type="date"]::-webkit-calendar-picker-indicator {
-            color: #3C3F4C;
-            transform: scale(1.5);
-            margin-right: 8px;
-        }
-
-        input[type="date"]::-webkit-datetime-edit {
-            color: #3C3F4C;
-            font-size: 16px;
-            padding: 4px 0;
-        }
-
-        input[type="date"]::-webkit-datetime-edit-fields-wrapper {
-            color: #3C3F4C;
-            font-size: 16px;
-        }
-
-        input[type="date"]::-webkit-datetime-edit-text {
-            color: #3C3F4C;
-            font-size: 16px;
-            padding: 0 4px;
-        }
-
-        input[type="date"]::-webkit-datetime-edit-month-field {
-            color: #3C3F4C;
-            font-size: 16px;
-        }
-
-        input[type="date"]::-webkit-datetime-edit-day-field {
-            color: #3C3F4C;
-            font-size: 16px;
-        }
-
-        input[type="date"]::-webkit-datetime-edit-year-field {
-            color: #3C3F4C;
-            font-size: 16px;
-        }
-
-        /* Add animation keyframes */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes fadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
-        }
-
-        .fade-enter {
-            animation: fadeIn 0.3s ease-out forwards;
-        }
-
-        .fade-exit {
-            animation: fadeOut 0.3s ease-out forwards;
-        }
-
+        /* Step transition animations */
         .step-content {
-            position: absolute;
-            width: 100%;
-            left: 0;
-            right: 0;
-        }
-
-        main {
+            opacity: 0;
+            transform: translateX(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
             position: relative;
+            width: 100%;
+            display: none;
         }
 
-        input[type="radio"]:checked + div .w-3.h-3 {
+        .step-content.active {
+            opacity: 1;
+            transform: translateX(0);
             display: block;
         }
-        input[type="radio"]:checked + div {
-            outline: 2px solid #4869AF;
-            outline-offset: 4px;
-            background-color: #F2F6FA;
-        }
 
-        input[type="radio"]:checked + div {
-            position: relative;
-        }
-        input[type="radio"]:checked + div::before {
-            content: '';
-            position: absolute;
-            top: -6px;
-            left: -6px;
-            right: -6px;
-            bottom: -6px;
-            border: 2px solid #4869AF;
-            border-radius: 20px;
-            pointer-events: none;
-            z-index: 1;
-            background: transparent;
-        }
-
-        /* Plan Selection Styles */
-        .plan-card {
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .plan-card input[type="radio"] {
-            position: absolute;
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .plan-card input[type="radio"]:checked + div {
-            background-color: #F2F6FA;
-        }
-
-        .plan-card:hover {
-            transform: translateY(-2px);
-        }
-
-        .plan-card input[type="radio"]:checked + div::before {
-            content: '';
-            position: absolute;
-            top: -4px;
-            left: -4px;
-            right: -4px;
-            bottom: -4px;
-            border: 1px solid #4869AF;
-            border-radius: 20px;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .plan-card .radio-button {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            width: 24px;
-            height: 24px;
-            border: 1px solid #4869AF;
-            border-radius: 50%;
-            z-index: 2;
-        }
-
-        .plan-card input[type="radio"]:checked + div .radio-button {
-            background-color: #4869AF;
-        }
-
-        .plan-card input[type="radio"]:checked + div .radio-button::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 12px;
-            height: 12px;
-            background-color: white;
-            border-radius: 50%;
-        }
-
-        .plan-card .check-icon {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background-color: #4869AF;
+        .step-content.hidden {
             display: none;
-            align-items: center;
-            justify-content: center;
         }
 
-        input[type="radio"]:checked + div .check-icon {
-            display: flex;
+        /* Progress bar animation */
+        #progressBar {
+            transition: width 0.5s ease-in-out;
+        }
+
+        .address-container {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        /* Mobile menu styles */
+        .mobile-menu-button {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-button {
+                display: block;
+            }
+            .desktop-menu {
+                display: none !important;
+            }
+        }
+
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 100%;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                padding-left: 7.5rem;
+                padding-right: 7.5rem;
+            }
+        }
+
+        .plan-radio:checked + .plan-label .plan-card {
+            border: 2px solid #4969AF;
+        }
+        .plan-radio:checked + .plan-label .radio-dot {
+            display: block;
+        }
+        .plan-label:hover .plan-card {
+            border-color: #4969AF;
+        }
+        .plan-card {
+            border: 2px solid #EEF5FD;
+            transition: all 0.3s ease;
         }
     </style>
     <script>
@@ -331,7 +168,7 @@
         }
     </script>
 </head>
-<body class="bg-secondary-blue min-h-screen font-nexa">
+<body class="bg-secondary-blue min-h-screen font-nexa m-0 p-0">
     <!-- Top Bar -->
     <div class="bg-[#2A4B73] text-white py-2 px-4 text-center">
         <p class="text-[#F2F6FA] text-sm">Nullam vel sem. Maecenas malesuada. Cras dapibus. Vivamus consectetuer hendrerit lacus.</p>
@@ -339,1880 +176,574 @@
 
     <!-- Header -->
     <header class="bg-bg-white w-full">
-        <div class="container mx-auto px-[88px] py-4 w-full">
+        <div class="container mx-auto px-4 md:px-[88px] py-4">
             <div class="flex justify-between items-center w-full">
                 <div class="flex items-center">
-                    <span class="text-4xl font-sora text-primary-blue font-extrabold">happipad</span>
+                    <img src="assets/dark_logo.svg" alt="Happipad Logo" class="h-10 w-auto">
                 </div>
-                <div class="flex items-center space-x-4">
-                    <button class="header-button">
-                        <span>Help 24/7</span>
-                    </button>
-                    <button class="header-button">
-                        <span>Sign in</span>
+                <div class="flex items-center">
+                    <!-- Desktop Menu -->
+                    <div class="desktop-menu hidden md:flex items-center space-x-4">
+                        <button class="header-button">
+                            <img src="assets/Support.svg" alt="Support" class="w-6 h-6 mr-2">
+                            <span>Help 24/7</span>
+                        </button>
+                        <button class="header-button">
+                            <img src="assets/user.svg" alt="User" class="w-6 h-6 mr-2">
+                            <span>Sign in</span>
+                        </button>
+                    </div>
+                    <!-- Mobile Menu Button -->
+                    <button class="mobile-menu-button p-2" onclick="toggleMobileMenu()">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
                     </button>
                 </div>
             </div>
         </div>
     </header>
-    
-    <!-- Main Content -->
-    <main class="container mx-auto px-[88px] pb-8 pt-[12px]">
-        <div id="step-content-1">
-            <div class="flex flex-col gap-3">
-                <div class="flex gap-3">
-                    <!-- Steps Sidebar -->
-                    <div class="bg-bg-white py-4 pr-4 pl-8 rounded-lg border border-[#EEF5FD]" style="width: 231px;">
-                        <div class="mb-6">
-                            <h2 class="text-xl text-text-1 pl-4">Steps</h2>
-                        </div>
-                        <div class="relative">
-                            <div class="vertical-progress" style="height: calc(100% - 1rem);">
-                                <div class="progress-fill" style="height: 0%"></div>
-                            </div>
-                            <div class="space-y-2 divide-y divide-gray-300">
-                                <div class="step-indicator active py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-theme-secondary">Address</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-text-secondary-2">Start date</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-text-secondary-2">Personal details</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-text-secondary-2">Contact info</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-text-secondary-2">Pick your plan</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-text-secondary-2">Payment</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Question Section -->
-                    <div class="flex-1">
-                        <div class="bg-bg-white p-6 rounded-lg h-full flex flex-col border border-[#EEF5FD]">
-                            <div class="mb-6">
-                                <h1 class="text-3xl text-text-1 mb-2">What's your address?</h1>
-                                <p class="text-[#3C3F4C]">Please provide your current address.</p>
-                            </div>
-                            <div class="space-y-4">
-                                <!-- Address Fields -->
-                                <div>
-                                    <label class="block mb-2 text-sm text-[#3C3F4C]">Street Address</label>
-                                    <input type="text" class="w-full border-[0.5px] border-[#6D6F79] rounded-[4px] px-4 py-2 text-[#3C3F4C] focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
-                                </div>
-                                <div>
-                                    <label class="block mb-2 text-sm text-[#3C3F4C]">City</label>
-                                    <input type="text" class="w-full border-[0.5px] border-[#6D6F79] rounded-[4px] px-4 py-2 text-[#3C3F4C] focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
-                                </div>
-                                <div>
-                                    <label class="block mb-2 text-sm text-[#3C3F4C]">Province/State</label>
-                                    <input type="text" class="w-full border-[0.5px] border-[#6D6F79] rounded-[4px] px-4 py-2 text-[#3C3F4C] focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
-                                </div>
-                                <div>
-                                    <label class="block mb-2 text-sm text-[#3C3F4C]">Postal/Zip Code</label>
-                                    <input type="text" class="w-full border-[0.5px] border-[#6D6F79] rounded-[4px] px-4 py-2 text-[#3C3F4C] focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
-                                </div>
-                            </div>
-                            <div class="flex gap-3 mt-auto pt-6">
-                                <button id="back-button-1" class="border border-theme-secondary text-theme-secondary px-6 pt-[16px] pb-[11px] rounded-999 hover:bg-secondary-blue transition-colors flex items-center justify-center" style="width: 100px;">Back</button>
-                                <button id="continue-button-1" class="bg-theme-secondary text-white px-6 pt-[16px] pb-[11px] rounded-999 hover:bg-primary-blue transition-colors flex-1 flex items-center justify-center">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- FAQ Section -->
-                <div class="bg-bg-white px-8 pt-6 pb-6 rounded-lg border border-[#EEF5FD]">
-                    <h2 class="text-2xl text-text-1 mb-4">Happicover FAQs</h2>
-                    <div class="space-y-2 divide-y divide-gray-300">
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                What does the coverage include?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <div class="mb-2">What's Covered:</div>
-                                <p class="mb-4">
-                                    Bodily Injury – Up to $1M/event<br>
-                                    Property Damage – Up to $100K/event<br>
-                                    Medical Payments – Up to $10K/event
-                                </p>
-                                <div class="mb-2">Optional Add-Ons:</div>
-                                <p>
-                                    Personal Property – Up to $20K ($500 deductible)<br>
-                                    Animal Liability – Up to $100K<br>
-                                    Pet Damage – Up to $750 ($100 deductible)<br>
-                                    Biohazard Clean-Up – Up to $2K
-                                </p>
-                            </div>
-                        </details>
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                Do I need to pay a deductible when filing a claim?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <p class="mt-2 text-text-2">Yes, there may be a deductible depending on the claim.</p>
-                            </div>
-                        </details>
-                        
-                        <!-- New FAQ Item -->
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                Who should I reach out to with questions about the coverage?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>Please reach out to [Contact Information Placeholder].</p>
-                            </div>
-                        </details>
-
-                        <!-- New FAQ Item -->
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                Can I get a refund if I cancel my coverage?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>Refund eligibility depends on [Refund Policy Placeholder].</p>
-                            </div>
-                        </details>
-
-                        <!-- New FAQ Item -->
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                How do I access policy?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>You can access your policy through [Access Method Placeholder].</p>
-                            </div>
-                        </details>
-
-                        <!-- New FAQ Item -->
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                How to make a claim?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>To make a claim, follow [Claim Process Placeholder].</p>
-                            </div>
-                        </details>
-
-                        <!-- New FAQ Item -->
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                How to cancel policy?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>To cancel your policy, follow [Cancellation Process Placeholder].</p>
-                            </div>
-                        </details>
-                    </div>
+    <!-- Mobile Menu Popup -->
+    <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 p-6">
+        <div class="flex justify-between items-center mb-8">
+            <h3 class="text-lg font-semibold">Menu</h3>
+            <button onclick="toggleMobileMenu()" class="p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
         </div>
+        <div class="space-y-4">
+            <button class="w-full flex items-center p-3 hover:bg-gray-100 rounded-lg transition-colors">
+                <img src="assets/Support.svg" alt="Support" class="w-6 h-6 mr-3">
+                <span>Help 24/7</span>
+            </button>
+            <button class="w-full flex items-center p-3 hover:bg-gray-100 rounded-lg transition-colors">
+                <img src="assets/user.svg" alt="User" class="w-6 h-6 mr-3">
+                <span>Sign in</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobileMenuOverlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40" onclick="toggleMobileMenu()"></div>
+
+    <main class="container mx-auto px-4 md:px-8 lg:px-[120px] pt-3 pb-8 w-full">
+        <!-- Main Content -->
+        <div class="space-y-3 mb-3 w-full">
+            <!-- Progress Card -->
+            <div class="bg-bg-white rounded-[16px] border border-[#EEF5FD] p-4 sm:p-4 md:p-6 w-full max-w-[1200px] mx-auto">
+                <h3 class="text-lg font-semibold mb-4">Progress</h3>
+                <div class="w-full bg-[#BDC9DB] rounded-full h-2">
+                    <div id="progressBar" class="bg-theme-secondary h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+                <p class="text-sm text-text-secondary-2 mt-2 font-semibold" id="stepCounter">Step 1 of 6</p>
             </div>
-        </div>
 
-        <!-- Step 2: Start Date Step (Initially Hidden) -->
-        <div id="step-content-2" class="hidden">
-            <div class="flex flex-col gap-3">
-                <div class="flex gap-3">
-                    <!-- Steps Sidebar -->
-                    <div class="bg-bg-white py-4 pr-4 pl-8 rounded-lg border border-[#EEF5FD]" style="width: 231px;">
-                        <div class="mb-6">
-                            <h2 class="text-xl text-text-1 pl-4">Steps</h2>
+            <!-- Question Card -->
+            <div class="bg-bg-white rounded-[16px] border border-[#EEF5FD] p-4 sm:p-4 md:p-6 w-full max-w-[1200px] mx-auto">
+                <div id="step1" class="step-content">
+                    <h3 class="text-3xl text-text-1 mb-2">Where is your property located?</h3>
+                    <p class="text-text-secondary-2 mb-[72px] font-semibold">Please provide the address of the property you want to insure.</p>
+                    <div class="space-y-4 mb-[72px]">
+                        <div>
+                            <label class="block text-sm text-text-secondary-2 mb-1">Street Address</label>
+                            <input type="text" class="w-full border-[0.5px] border-[#6D6F79] rounded-[6px] px-4 py-2 text-text-1 focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
                         </div>
-                        <div class="relative">
-                            <div class="vertical-progress" style="height: calc(100% - 1rem);">
-                                <div class="progress-fill" style="height: 0%"></div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm text-text-secondary-2 mb-1">City</label>
+                                <input type="text" class="w-full border-[0.5px] border-[#6D6F79] rounded-[6px] px-4 py-2 text-text-1 focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
                             </div>
-                            <div class="space-y-2 divide-y divide-gray-300">
-                                <div class="step-indicator completed py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-theme-secondary">Address</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator active py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-theme-secondary">Start date</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-text-secondary-2">Personal details</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-text-secondary-2">Contact info</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-text-secondary-2">Pick your plan</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-text-secondary-2">Payment</div>
-                                    </div>
-                                </div>
+                            <div>
+                                <label class="block text-sm text-text-secondary-2 mb-1">State/Province</label>
+                                <input type="text" class="w-full border-[0.5px] border-[#6D6F79] rounded-[6px] px-4 py-2 text-text-1 focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
                             </div>
-                        </div>
-                    </div>
-                    <!-- Question Section for Start Date -->
-                    <div class="flex-1">
-                        <div class="bg-bg-white p-6 rounded-lg h-full flex flex-col border border-[#EEF5FD]">
-                            <div class="mb-6">
-                                <h1 class="text-3xl text-text-1 mb-2">What's your insurance start date?</h1>
-                                <p class="text-[#3C3F4C]">Date should be in the future.</p>
-                            </div>
-                            <div class="space-y-4">
-                                <div>
-                                    <label class="block mb-2 text-sm text-[#3C3F4C]">Start date</label>
-                                    <input type="date" class="w-full border-[0.5px] border-[#6D6F79] rounded-[4px] px-4 py-2 text-[#3C3F4C] focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300" min="2024-03-20">
-                                </div>
-                            </div>
-                            <div class="flex gap-3 mt-auto pt-6">
-                                <button id="back-button-2" class="border border-theme-secondary text-theme-secondary px-6 pt-[16px] pb-[11px] rounded-999 hover:bg-secondary-blue transition-colors flex items-center justify-center" style="width: 100px;">Back</button>
-                                <button id="continue-button-2" class="bg-theme-secondary text-white px-6 pt-[16px] pb-[11px] rounded-999 hover:bg-primary-blue transition-colors flex-1 flex items-center justify-center">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- FAQ Section -->
-                <div class="bg-bg-white px-8 pt-6 pb-6 rounded-lg border border-[#EEF5FD]">
-                    <h2 class="text-2xl text-text-1 mb-4">Happicover FAQs</h2>
-                    <div class="space-y-2 divide-y divide-gray-300">
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                What does the coverage include?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <div class="mb-2">What's Covered:</div>
-                                <p class="mb-4">
-                                    Bodily Injury – Up to $1M/event<br>
-                                    Property Damage – Up to $100K/event<br>
-                                    Medical Payments – Up to $10K/event
-                                </p>
-                                <div class="mb-2">Optional Add-Ons:</div>
-                                <p>
-                                    Personal Property – Up to $20K ($500 deductible)<br>
-                                    Animal Liability – Up to $100K<br>
-                                    Pet Damage – Up to $750 ($100 deductible)<br>
-                                    Biohazard Clean-Up – Up to $2K
-                                </p>
-                            </div>
-                        </details>
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                Do I need to pay a deductible when filing a claim?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <p class="mt-2 text-text-2">Yes, there may be a deductible depending on the claim.</p>
-                            </div>
-                        </details>
-                        <!-- Remaining FAQ items would be here -->
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                Who should I reach out to with questions about the coverage?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>Please reach out to [Contact Information Placeholder].</p>
-                            </div>
-                        </details>
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                Can I get a refund if I cancel my coverage?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>Refund eligibility depends on [Refund Policy Placeholder].</p>
-                            </div>
-                        </details>
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                How do I access policy?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>You can access your policy through [Access Method Placeholder].</p>
-                            </div>
-                        </details>
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                How to make a claim?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>To make a claim, follow [Claim Process Placeholder].</p>
-                            </div>
-                        </details>
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                How to cancel policy?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>To cancel your policy, follow [Cancellation Process Placeholder].</p>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Step 3: Personal Details Step (Initially Hidden) -->
-        <div id="step-content-3" class="hidden">
-            <div class="flex flex-col gap-3">
-                <div class="flex gap-3">
-                    <!-- Steps Sidebar -->
-                    <div class="bg-bg-white py-4 pr-4 pl-8 rounded-lg border border-[#EEF5FD]" style="width: 231px;">
-                        <div class="mb-6">
-                            <h2 class="text-xl text-text-1 pl-4">Steps</h2>
-                        </div>
-                        <div class="relative">
-                            <div class="vertical-progress" style="height: calc(100% - 1rem);">
-                                <div class="progress-fill" style="height: 0%"></div>
-                            </div>
-                            <div class="space-y-2 divide-y divide-gray-300">
-                                <div class="step-indicator completed py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-theme-secondary">Address</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator completed py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-theme-secondary">Start date</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator active py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-theme-secondary">Personal details</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-text-secondary-2">Contact info</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-text-secondary-2">Pick your plan</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-text-secondary-2">Payment</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Question Section for Personal Details -->
-                    <div class="flex-1">
-                        <div class="bg-bg-white p-6 rounded-lg h-full flex flex-col border border-[#EEF5FD]">
-                            <div class="mb-6">
-                                <h1 class="text-3xl text-text-1 mb-2">What's your personal details?</h1>
-                                <p class="text-[#3C3F4C]">Please provide your personal information.</p>
-                            </div>
-                            <div class="space-y-4">
-                                <div>
-                                    <label class="block mb-2 text-sm text-[#3C3F4C]">First Name</label>
-                                    <input type="text" class="w-full border-[0.5px] border-[#6D6F79] rounded-[4px] px-4 py-2 text-[#3C3F4C] focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
-                                </div>
-                                <div>
-                                    <label class="block mb-2 text-sm text-[#3C3F4C]">Last Name</label>
-                                    <input type="text" class="w-full border-[0.5px] border-[#6D6F79] rounded-[4px] px-4 py-2 text-[#3C3F4C] focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
                         </div>
                         <div>
-                                    <label class="block mb-2 text-sm text-[#3C3F4C]">Date of Birth</label>
-                                    <input type="date" class="w-full border-[0.5px] border-[#6D6F79] rounded-[4px] px-4 py-2 text-[#3C3F4C] focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
-                                </div>
-                            </div>
-                            <div class="flex gap-3 mt-auto pt-6">
-                                <button id="back-button-3" class="border border-theme-secondary text-theme-secondary px-6 pt-[16px] pb-[11px] rounded-999 hover:bg-secondary-blue transition-colors flex items-center justify-center" style="width: 100px;">Back</button>
-                                <button id="continue-button-3" class="bg-theme-secondary text-white px-6 pt-[16px] pb-[11px] rounded-999 hover:bg-primary-blue transition-colors flex-1 flex items-center justify-center">Continue</button>
-                            </div>
+                            <label class="block text-sm text-text-secondary-2 mb-1">ZIP Code/Postal Code</label>
+                            <input type="text" class="w-full border-[0.5px] border-[#6D6F79] rounded-[6px] px-4 py-2 text-text-1 focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
                         </div>
                     </div>
-                </div>
-                <!-- FAQ Section -->
-                <div class="bg-bg-white px-8 pt-6 pb-6 rounded-lg border border-[#EEF5FD]">
-                    <h2 class="text-2xl text-text-1 mb-4">Happicover FAQs</h2>
-                    <div class="space-y-2 divide-y divide-gray-300">
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                What does the coverage include?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <div class="mb-2">What's Covered:</div>
-                                <p class="mb-4">
-                                    Bodily Injury – Up to $1M/event<br>
-                                    Property Damage – Up to $100K/event<br>
-                                    Medical Payments – Up to $10K/event
-                                </p>
-                                <div class="mb-2">Optional Add-Ons:</div>
-                                <p>
-                                    Personal Property – Up to $20K ($500 deductible)<br>
-                                    Animal Liability – Up to $100K<br>
-                                    Pet Damage – Up to $750 ($100 deductible)<br>
-                                    Biohazard Clean-Up – Up to $2K
-                                </p>
-                            </div>
-                        </details>
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                Do I need to pay a deductible when filing a claim?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                        </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <p class="mt-2 text-text-2">Yes, there may be a deductible depending on the claim.</p>
-                            </div>
-                    </details>
-                        <!-- Remaining FAQ items would be here -->
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                Who should I reach out to with questions about the coverage?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                        </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>Please reach out to [Contact Information Placeholder].</p>
-                            </div>
-                    </details>
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                Can I get a refund if I cancel my coverage?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                        </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>Refund eligibility depends on [Refund Policy Placeholder].</p>
-                            </div>
-                    </details>
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                How do I access policy?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                        </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>You can access your policy through [Access Method Placeholder].</p>
-                            </div>
-                    </details>
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                How to make a claim?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                        </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>To make a claim, follow [Claim Process Placeholder].</p>
-                            </div>
-                    </details>
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                How to cancel policy?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                        </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>To cancel your policy, follow [Cancellation Process Placeholder].</p>
-                            </div>
-                    </details>
+                    <div>
+                        <button type="button" onclick="showStep(2)" class="w-full bg-theme-secondary text-white pt-4 pb-[11px] px-8 rounded-999 hover:bg-primary-blue transition-colors">
+                            Continue
+                        </button>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- Step 4: Contact Information Step (Initially Hidden) -->
-        <div id="step-content-4" class="hidden">
-            <div class="flex flex-col gap-3">
-                <div class="flex gap-3">
-                    <!-- Steps Sidebar -->
-                    <div class="bg-bg-white py-4 pr-4 pl-8 rounded-lg border border-[#EEF5FD]" style="width: 231px;">
-                        <div class="mb-6">
-                            <h2 class="text-xl text-text-1 pl-4">Steps</h2>
-                        </div>
-                        <div class="relative">
-                            <div class="vertical-progress" style="height: calc(100% - 1rem);">
-                                <div class="progress-fill" style="height: 0%"></div>
-                            </div>
-                            <div class="space-y-2 divide-y divide-gray-300">
-                                <div class="step-indicator completed py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-theme-secondary">Address</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator completed py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-theme-secondary">Start date</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator completed py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-theme-secondary">Personal details</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator active py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-theme-secondary">Contact info</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-text-secondary-2">Pick your plan</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-text-secondary-2">Payment</div>
-                                    </div>
-                                </div>
-                            </div>
+                <div id="step2" class="step-content hidden">
+                    <h3 class="text-3xl text-text-1 mb-2">What's your insurance start date?</h3>
+                    <p class="text-text-secondary-2 mb-[72px] font-semibold">Choose when you'd like your coverage to begin.</p>
+                    <div class="space-y-4 mb-[72px]">
+                        <div>
+                            <label class="block text-sm text-text-secondary-2 mb-1">Start Date</label>
+                            <input type="date" class="w-full border-[0.5px] border-[#6D6F79] rounded-[6px] px-4 py-2 text-text-1 focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
                         </div>
                     </div>
-                    <!-- Question Section for Contact Information -->
-                    <div class="flex-1">
-                        <div class="bg-bg-white p-6 rounded-lg h-full flex flex-col border border-[#EEF5FD]">
-                            <div class="mb-6">
-                                <h1 class="text-3xl text-text-1 mb-2">What's your contact information?</h1>
-                                <p class="text-[#3C3F4C]">Please provide your contact details.</p>
-                            </div>
-                            <div class="space-y-4">
-                                <div>
-                                    <label class="block mb-2 text-sm text-[#3C3F4C]">Email Address</label>
-                                    <input type="email" class="w-full border-[0.5px] border-[#6D6F79] rounded-[4px] px-4 py-2 text-[#3C3F4C] focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
-                                </div>
-                                <div>
-                                    <label class="block mb-2 text-sm text-[#3C3F4C]">Phone Number</label>
-                                    <input type="tel" class="w-full border-[0.5px] border-[#6D6F79] rounded-[4px] px-4 py-2 text-[#3C3F4C] focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
-                                </div>
-                                <div class="flex items-start space-x-3 pt-2">
-                                    <input type="checkbox" id="sms-consent" class="mt-1 h-4 w-4 rounded border-[#6D6F79] text-theme-secondary focus:ring-theme-secondary">
-                                    <label for="sms-consent" class="text-sm text-[#3C3F4C]">
-                                        I consent to receive SMS notifications about my insurance policy and important updates.
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="flex gap-3 mt-auto pt-6">
-                                <button id="back-button-4" class="border border-theme-secondary text-theme-secondary px-6 pt-[16px] pb-[11px] rounded-999 hover:bg-secondary-blue transition-colors flex items-center justify-center" style="width: 100px;">Back</button>
-                                <button id="continue-button-4" class="bg-theme-secondary text-white px-6 pt-[16px] pb-[11px] rounded-999 hover:bg-primary-blue transition-colors flex-1 flex items-center justify-center">Continue</button>
-                            </div>
-                        </div>
+                    <div class="flex gap-4">
+                        <button type="button" onclick="showStep(1)" class="w-[100px] shrink-0 border border-theme-secondary/50 text-theme-secondary pt-4 pb-[11px] px-8 rounded-999 hover:bg-[#F5F7FC] hover:text-theme-secondary transition-colors">
+                            Back
+                        </button>
+                        <button type="button" onclick="showStep(3)" class="flex-1 bg-theme-secondary text-white pt-4 pb-[11px] px-8 rounded-999 hover:bg-primary-blue transition-colors">
+                            Continue
+                        </button>
                     </div>
                 </div>
-                <!-- FAQ Section -->
-                <div class="bg-bg-white px-8 pt-6 pb-6 rounded-lg border border-[#EEF5FD]">
-                    <h2 class="text-2xl text-text-1 mb-4">Happicover FAQs</h2>
-                    <div class="space-y-2 divide-y divide-gray-300">
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                What does the coverage include?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <div class="mb-2">What's Covered:</div>
-                                <p class="mb-4">
-                                    Bodily Injury – Up to $1M/event<br>
-                                    Property Damage – Up to $100K/event<br>
-                                    Medical Payments – Up to $10K/event
-                                </p>
-                                <div class="mb-2">Optional Add-Ons:</div>
-                                <p>
-                                    Personal Property – Up to $20K ($500 deductible)<br>
-                                    Animal Liability – Up to $100K<br>
-                                    Pet Damage – Up to $750 ($100 deductible)<br>
-                                    Biohazard Clean-Up – Up to $2K
-                                </p>
-                            </div>
-                        </details>
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                Do I need to pay a deductible when filing a claim?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <p class="mt-2 text-text-2">Yes, there may be a deductible depending on the claim.</p>
-                            </div>
-                        </details>
-                        <!-- Remaining FAQ items would be here -->
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                Who should I reach out to with questions about the coverage?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>Please reach out to [Contact Information Placeholder].</p>
-                            </div>
-                        </details>
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                Can I get a refund if I cancel my coverage?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>Refund eligibility depends on [Refund Policy Placeholder].</p>
-                            </div>
-                        </details>
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                How do I access policy?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>You can access your policy through [Access Method Placeholder].</p>
-                            </div>
-                        </details>
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                How to make a claim?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>To make a claim, follow [Claim Process Placeholder].</p>
-                            </div>
-                        </details>
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                How to cancel policy?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>To cancel your policy, follow [Cancellation Process Placeholder].</p>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Step 5: Plan Selection Step (Initially Hidden) -->
-        <div id="step-content-5" class="hidden">
-            <div class="flex flex-col gap-3">
-                <div class="flex gap-3">
-                    <!-- Steps Sidebar -->
-                    <div class="bg-bg-white py-4 pr-4 pl-8 rounded-lg border border-[#EEF5FD]" style="width: 231px;">
-                        <div class="mb-6">
-                            <h2 class="text-xl text-text-1 pl-4">Steps</h2>
+                <div id="step3" class="step-content hidden">
+                    <h3 class="text-3xl text-text-1 mb-2">Tell us about yourself</h3>
+                    <p class="text-text-secondary-2 mb-[72px] font-semibold">Please provide your personal information.</p>
+                    <div class="space-y-4 mb-[72px]">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm text-text-secondary-2 mb-1">First Name</label>
+                                <input type="text" class="w-full border-[0.5px] border-[#6D6F79] rounded-[6px] px-4 py-2 text-text-1 focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
+                            </div>
+                            <div>
+                                <label class="block text-sm text-text-secondary-2 mb-1">Last Name</label>
+                                <input type="text" class="w-full border-[0.5px] border-[#6D6F79] rounded-[6px] px-4 py-2 text-text-1 focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
+                            </div>
                         </div>
-                        <div class="relative">
-                            <div class="vertical-progress" style="height: calc(100% - 1rem);">
-                                <div class="progress-fill" style="height: 0%"></div>
-                            </div>
-                            <div class="space-y-2 divide-y divide-gray-300">
-                                <div class="step-indicator completed py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-theme-secondary">Address</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator completed py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-theme-secondary">Start date</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator completed py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-theme-secondary">Personal details</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator completed py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-theme-secondary">Contact info</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator active py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-theme-secondary">Pick your plan</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-text-secondary-2">Payment</div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div>
+                            <label class="block text-sm text-text-secondary-2 mb-1">Date of Birth</label>
+                            <input type="date" class="w-full border-[0.5px] border-[#6D6F79] rounded-[6px] px-4 py-2 text-text-1 focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
                         </div>
                     </div>
-                    <!-- Question Section for Plan Selection -->
-                    <div class="flex-1">
-                        <div class="bg-bg-white p-6 rounded-lg h-full flex flex-col border border-[#EEF5FD]">
-                            <div class="mb-6">
-                                <h1 class="text-3xl text-text-1 mb-2">💰 Pick your plan</h1>
-                                <p class="text-[#3C3F4C]">Choose the insurance plan that best fits your needs.</p>
-                            </div>
-                            <div class="grid grid-cols-2 gap-6">
-                                <!-- Basic Plan -->
-                                <label class="plan-card">
-                                    <input type="radio" name="plan" value="basic">
-                                    <div class="bg-[#F2F6FA] rounded-[16px] p-6 cursor-pointer">
-                                        <div class="flex flex-col h-full">
-                                            <div class="flex justify-between items-start mb-4">
-                                                <div>
-                                                    <h3 class="text-xl font-bold text-text-1 mb-2">Annual Plan</h3>
-                                                    <p class="text-text-secondary-2">Pay $240 annually</p>
-                                                </div>
-                                                <div class="radio-button"></div>
+                    <div class="flex gap-4">
+                        <button type="button" onclick="showStep(2)" class="w-[100px] shrink-0 border border-theme-secondary/50 text-theme-secondary pt-4 pb-[11px] px-8 rounded-999 hover:bg-[#F5F7FC] hover:text-theme-secondary transition-colors">
+                            Back
+                        </button>
+                        <button type="button" onclick="showStep(4)" class="flex-1 bg-theme-secondary text-white pt-4 pb-[11px] px-8 rounded-999 hover:bg-primary-blue transition-colors">
+                            Continue
+                        </button>
+                    </div>
+                </div>
+
+                <div id="step4" class="step-content hidden">
+                    <h3 class="text-3xl text-text-1 mb-2">How can we reach you?</h3>
+                    <p class="text-text-secondary-2 mb-[72px] font-semibold">Please provide your contact information.</p>
+                    <div class="space-y-4 mb-[72px]">
+                        <div>
+                            <label class="block text-sm text-text-secondary-2 mb-1">Email</label>
+                            <input type="email" class="w-full border-[0.5px] border-[#6D6F79] rounded-[6px] px-4 py-2 text-text-1 focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-text-secondary-2 mb-1">Phone Number</label>
+                            <input type="tel" class="w-full border-[0.5px] border-[#6D6F79] rounded-[6px] px-4 py-2 text-text-1 focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <button type="button" onclick="showStep(3)" class="w-[100px] shrink-0 border border-theme-secondary/50 text-theme-secondary pt-4 pb-[11px] px-8 rounded-999 hover:bg-[#F5F7FC] hover:text-theme-secondary transition-colors">
+                            Back
+                        </button>
+                        <button type="button" onclick="showStep(5)" class="flex-1 bg-theme-secondary text-white pt-4 pb-[11px] px-8 rounded-999 hover:bg-primary-blue transition-colors">
+                            Continue
+                        </button>
+                    </div>
+                </div>
+
+                <div id="step5" class="step-content hidden">
+                    <h3 class="text-3xl text-text-1 mb-2">Choose your plan</h3>
+                    <p class="text-text-secondary-2 mb-[72px] font-semibold">Select the payment plan that works best for you.</p>
+                    <div class="space-y-4 mb-[72px]">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="plan-option">
+                                <input type="radio" id="monthly-plan" name="plan" class="plan-radio hidden" value="monthly">
+                                <label for="monthly-plan" class="plan-label block cursor-pointer">
+                                    <div class="plan-card h-full p-6 border border-[#EEF5FD] rounded-[16px] bg-[#F5F7FC]">
+                                        <div class="flex items-center justify-between mb-4">
+                                            <div>
+                                                <h4 class="text-lg font-semibold text-text-1">Monthly</h4>
+                                                <p class="text-sm text-text-secondary-2 font-semibold">Pay monthly</p>
                                             </div>
-                                            <ul class="space-y-3 mb-4 flex-grow">
-                                                <li class="flex items-start">
-                                                    <img src="img/check.svg" alt="Included" class="w-5 h-5 mr-2 mt-0.5">
-                                                    <span>Bodily Injury – Up to $1M/event</span>
-                                                </li>
-                                                <li class="flex items-start">
-                                                    <img src="img/check.svg" alt="Included" class="w-5 h-5 mr-2 mt-0.5">
-                                                    <span>Property Damage – Up to $100K/event</span>
-                                                </li>
-                                                <li class="flex items-start">
-                                                    <img src="img/check.svg" alt="Included" class="w-5 h-5 mr-2 mt-0.5">
-                                                    <span>Medical Payments – Up to $10K/event</span>
-                                                </li>
-                                            </ul>
-                                            <div class="text-right mt-4">
-                                                <div class="text-2xl font-bold text-theme-secondary">$20</div>
-                                                <div class="text-text-secondary-2">per month</div>
+                                            <div class="radio-circle w-5 h-5 border-2 border-[#4969AF] rounded-full flex items-center justify-center">
+                                                <div class="radio-dot w-3 h-3 bg-[#4969AF] rounded-full hidden"></div>
                                             </div>
                                         </div>
-                                    </div>
-                                </label>
-
-                                <!-- Premium Plan -->
-                                <label class="plan-card">
-                                    <input type="radio" name="plan" value="premium">
-                                    <div class="bg-[#F2F6FA] rounded-[16px] p-6 cursor-pointer">
-                                        <div class="flex flex-col h-full">
-                                            <div class="flex justify-between items-start mb-4">
-                                                <div>
-                                                    <h3 class="text-xl font-bold text-text-1 mb-2">Monthly Plan</h3>
-                                                    <p class="text-text-secondary-2">Pay $22 monthly</p>
-                                                </div>
-                                                <div class="radio-button"></div>
+                                        <p class="text-2xl font-semibold text-text-1 mb-6">$22<span class="text-base font-semibold text-text-secondary-2">/month</span></p>
+                                        <div class="space-y-3">
+                                            <div class="flex items-start">
+                                                <svg class="w-5 h-5 text-[#4969AF] mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                                <p class="text-text-secondary-2 font-semibold">Bodily Injury up to $1,000,000</p>
                                             </div>
-                                            <ul class="space-y-3 mb-4 flex-grow">
-                                                <li class="flex items-start">
-                                                    <img src="img/check.svg" alt="Included" class="w-5 h-5 mr-2 mt-0.5">
-                                                    <span>All Basic Plan features</span>
-                                                </li>
-                                                <li class="flex items-start">
-                                                    <img src="img/check.svg" alt="Included" class="w-5 h-5 mr-2 mt-0.5">
-                                                    <span>Personal Property – Up to $20K</span>
-                                                </li>
-                                                <li class="flex items-start">
-                                                    <img src="img/check.svg" alt="Included" class="w-5 h-5 mr-2 mt-0.5">
-                                                    <span>Animal Liability – Up to $100K</span>
-                                                </li>
-                                                <li class="flex items-start">
-                                                    <img src="img/check.svg" alt="Included" class="w-5 h-5 mr-2 mt-0.5">
-                                                    <span>Pet Damage – Up to $750</span>
-                                                </li>
-                                                <li class="flex items-start">
-                                                    <img src="img/check.svg" alt="Included" class="w-5 h-5 mr-2 mt-0.5">
-                                                    <span>Biohazard Clean-Up – Up to $2K</span>
-                                                </li>
-                                            </ul>
-                                            <div class="text-right mt-4">
-                                                <div class="text-2xl font-bold text-theme-secondary">$22</div>
-                                                <div class="text-text-secondary-2">per month</div>
+                                            <div class="flex items-start">
+                                                <svg class="w-5 h-5 text-[#4969AF] mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                                <p class="text-text-secondary-2 font-semibold">Property Damage up to $100,000</p>
+                                            </div>
+                                            <div class="flex items-start">
+                                                <svg class="w-5 h-5 text-[#4969AF] mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                                <p class="text-text-secondary-2 font-semibold">Medical Payments up to $10,000</p>
                                             </div>
                                         </div>
                                     </div>
                                 </label>
                             </div>
-
-                            <style>
-                                input[type="radio"]:checked + div {
-                                    position: relative;
-                                }
-                                input[type="radio"]:checked + div::before {
-                                    content: '';
-                                    position: absolute;
-                                    top: -6px;
-                                    left: -6px;
-                                    right: -6px;
-                                    bottom: -6px;
-                                    border: 2px solid #4869AF;
-                                    border-radius: 20px;
-                                    pointer-events: none;
-                                    z-index: 1;
-                                    background: transparent;
-                                }
-                            </style>
-
-                            <div class="flex gap-3 mt-auto pt-6">
-                                <button id="back-button-5" class="border border-theme-secondary text-theme-secondary px-6 pt-[16px] pb-[11px] rounded-999 hover:bg-secondary-blue transition-colors flex items-center justify-center" style="width: 100px;">Back</button>
-                                <button id="continue-button-5" class="bg-theme-secondary text-white px-6 pt-[16px] pb-[11px] rounded-999 hover:bg-primary-blue transition-colors flex-1 flex items-center justify-center">Pick plan</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- FAQ Section -->
-                <div class="bg-bg-white px-8 pt-6 pb-6 rounded-lg border border-[#EEF5FD]">
-                    <h2 class="text-2xl text-text-1 mb-4">Happicover FAQs</h2>
-                    <div class="space-y-2 divide-y divide-gray-300">
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                What does the coverage include?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <div class="mb-2">What's Covered:</div>
-                                <p class="mb-4">
-                                    Bodily Injury – Up to $1M/event<br>
-                                    Property Damage – Up to $100K/event<br>
-                                    Medical Payments – Up to $10K/event
-                                </p>
-                                <div class="mb-2">Optional Add-Ons:</div>
-                                <p>
-                                    Personal Property – Up to $20K ($500 deductible)<br>
-                                    Animal Liability – Up to $100K<br>
-                                    Pet Damage – Up to $750 ($100 deductible)<br>
-                                    Biohazard Clean-Up – Up to $2K
-                                </p>
-                            </div>
-                        </details>
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                Do I need to pay a deductible when filing a claim?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <p class="mt-2 text-text-2">Yes, there may be a deductible depending on the claim.</p>
-                            </div>
-                        </details>
-                        <!-- Remaining FAQ items would be here -->
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                Who should I reach out to with questions about the coverage?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>Please reach out to [Contact Information Placeholder].</p>
-                            </div>
-                        </details>
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                Can I get a refund if I cancel my coverage?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>Refund eligibility depends on [Refund Policy Placeholder].</p>
-                            </div>
-                        </details>
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                How do I access policy?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>You can access your policy through [Access Method Placeholder].</p>
-                            </div>
-                        </details>
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                How to make a claim?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>To make a claim, follow [Claim Process Placeholder].</p>
-                            </div>
-                        </details>
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                How to cancel policy?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>To cancel your policy, follow [Cancellation Process Placeholder].</p>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Step 6: Payment Step (Initially Hidden) -->
-        <div id="step-content-6" class="hidden">
-            <div class="flex flex-col gap-3">
-                <div class="flex gap-3">
-                    <!-- Steps Sidebar -->
-                    <div class="bg-bg-white py-4 pr-4 pl-8 rounded-lg border border-[#EEF5FD]" style="width: 231px;">
-                        <div class="mb-6">
-                            <h2 class="text-xl text-text-1 pl-4">Steps</h2>
-                        </div>
-                        <div class="relative">
-                            <div class="vertical-progress" style="height: calc(100% - 1rem);">
-                                <div class="progress-fill" style="height: 0%"></div>
-                            </div>
-                            <div class="space-y-2 divide-y divide-gray-300">
-                                <div class="step-indicator completed py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-theme-secondary">Address</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator completed py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-theme-secondary">Start date</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator completed py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-theme-secondary">Personal details</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator completed py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-theme-secondary">Contact info</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator completed py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-theme-secondary">Pick your plan</div>
-                                    </div>
-                                </div>
-                                <div class="step-indicator active py-1">
-                                    <div class="indicator"></div>
-                                    <div class="ml-4">
-                                        <div class="text-theme-secondary">Payment</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Payment Section -->
-                    <div class="flex-1">
-                        <div class="bg-bg-white p-6 rounded-lg h-full flex flex-col border border-[#EEF5FD]">
-                            <div class="mb-6">
-                                <h1 class="text-3xl text-text-1 mb-2">Payment</h1>
-                                <p class="text-[#3C3F4C]">Complete your purchase</p>
-                            </div>
-
-                            <!-- Order Summary -->
-                            <div class="bg-[#F2F6FA] rounded-lg p-6">
-                                <h2 class="text-xl font-bold text-text-1 mb-4">Order Summary</h2>
-                                
-                                <!-- Selected Plan -->
-                                <div class="border-b border-[#EEF5FD] pb-4 mb-4">
-                                    <div class="flex justify-between items-start mb-2">
-                                        <div>
-                                            <h3 class="font-bold text-text-1">Annual Plan</h3>
-                                            <p class="text-text-secondary-2 text-sm">Pay annually</p>
+                            <div class="plan-option">
+                                <input type="radio" id="yearly-plan" name="plan" class="plan-radio hidden" value="yearly" checked>
+                                <label for="yearly-plan" class="plan-label block cursor-pointer">
+                                    <div class="plan-card h-full p-6 border border-[#EEF5FD] rounded-[16px] bg-[#F5F7FC]">
+                                        <div class="flex items-center justify-between mb-4">
+                                            <div>
+                                                <h4 class="text-lg font-semibold text-text-1">Yearly</h4>
+                                                <p class="text-sm text-text-secondary-2 font-semibold">One yearly payment</p>
+                                            </div>
+                                            <div class="radio-circle w-5 h-5 border-2 border-[#4969AF] rounded-full flex items-center justify-center">
+                                                <div class="radio-dot w-3 h-3 bg-[#4969AF] rounded-full hidden"></div>
+                                            </div>
                                         </div>
-                                        <div class="text-right">
-                                            <div class="font-bold text-theme-secondary">$240.00</div>
-                                            <div class="text-text-secondary-2 text-sm">$20.00/month</div>
+                                        <p class="text-2xl font-semibold text-text-1 mb-6">$240<span class="text-base font-semibold text-text-secondary-2">/year</span></p>
+                                        <p class="text-sm text-[#4969AF] font-semibold mb-6">Save 9%</p>
+                                        <div class="space-y-3">
+                                            <div class="flex items-start">
+                                                <svg class="w-5 h-5 text-[#4969AF] mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                                <p class="text-text-secondary-2 font-semibold">Bodily Injury up to $1,000,000</p>
+                                            </div>
+                                            <div class="flex items-start">
+                                                <svg class="w-5 h-5 text-[#4969AF] mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                                <p class="text-text-secondary-2 font-semibold">Property Damage up to $100,000</p>
+                                            </div>
+                                            <div class="flex items-start">
+                                                <svg class="w-5 h-5 text-[#4969AF] mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                                <p class="text-text-secondary-2 font-semibold">Medical Payments up to $10,000</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <button type="button" onclick="showStep(4)" class="w-[100px] shrink-0 border border-theme-secondary/50 text-theme-secondary pt-4 pb-[11px] px-8 rounded-999 hover:bg-[#F5F7FC] hover:text-theme-secondary transition-colors">
+                            Back
+                        </button>
+                        <button type="button" onclick="showStep(6)" class="flex-1 bg-theme-secondary text-white pt-4 pb-[11px] px-8 rounded-999 hover:bg-primary-blue transition-colors">
+                            Continue
+                        </button>
+                    </div>
+                </div>
+
+                <div id="step6" class="step-content hidden">
+                    <h3 class="text-3xl text-text-1 mb-8">Payment</h3>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-[72px]">
+                        <!-- Plan Details -->
+                        <div class="lg:col-span-3">
+                            <div>
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h4 class="text-lg font-semibold text-text-1">Happicover</h4>
+                                        <p class="text-text-secondary-2 font-semibold" id="plan-type">Yearly Payment</p>
+                                    </div>
+                                    <p class="text-2xl font-semibold text-text-1" id="plan-price">$240<span class="text-base font-semibold text-text-secondary-2">/year</span></p>
+                                </div>
+                                <p class="text-sm text-text-secondary-2 font-semibold mt-4">Your plan will be auto-renewed until canceled. Cancel any time. <a href="#" class="text-[#4969AF] hover:underline">Read more about cancellations</a></p>
+                            </div>
+                        </div>
+
+                        <!-- Payment Summary -->
+                        <div class="lg:col-span-2">
+                            <div class="bg-[#F5F7FC] rounded-[16px] border border-[#EEF5FD] p-6">
+                                <h4 class="text-lg font-semibold text-text-1 mb-4">Summary</h4>
+                                <div class="space-y-3 mb-6">
+                                    <div class="flex justify-between">
+                                        <p class="text-text-secondary-2 font-semibold">Subtotal</p>
+                                        <p class="text-text-1 font-semibold" id="subtotal">$22.00</p>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <p class="text-text-secondary-2 font-semibold">Tax</p>
+                                        <p class="text-text-1 font-semibold">$5.00</p>
+                                    </div>
+                                    <div class="border-t border-[#EEF5FD] pt-3">
+                                        <div class="flex justify-between">
+                                            <p class="text-text-1 font-semibold">Total</p>
+                                            <p class="text-text-1 font-semibold" id="total">$27.00</p>
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- Coverage Details -->
-                                <div class="space-y-3 mb-4">
-                                    <div class="flex justify-between">
-                                        <span class="text-text-secondary-2">Bodily Injury Coverage</span>
-                                        <span class="text-text-1">$1M/event</span>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span class="text-text-secondary-2">Property Damage Coverage</span>
-                                        <span class="text-text-1">$100K/event</span>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span class="text-text-secondary-2">Medical Payments</span>
-                                        <span class="text-text-1">$10K/event</span>
-                                    </div>
-                                </div>
-
-                                <!-- Total -->
-                                <div class="border-t border-[#EEF5FD] pt-4">
-                                    <div class="flex justify-between items-center">
-                                        <span class="font-bold text-text-1">Total</span>
-                                        <div class="text-right">
-                                            <div class="text-2xl font-bold text-theme-secondary">$240.00</div>
-                                            <div class="text-text-secondary-2 text-sm">$20.00/month</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="flex gap-3 mt-auto pt-6">
-                                <button id="back-button-6" class="border border-theme-secondary text-theme-secondary px-6 pt-[16px] pb-[11px] rounded-999 hover:bg-secondary-blue transition-colors flex items-center justify-center" style="width: 100px;">Back</button>
-                                <button id="continue-button-6" class="bg-theme-secondary text-white px-6 pt-[16px] pb-[11px] rounded-999 hover:bg-primary-blue transition-colors flex-1 flex items-center justify-center">Pay $240.00</button>
+                                <button onclick="showPaymentPopup()" class="w-full bg-theme-secondary text-white pt-4 pb-[11px] px-8 rounded-999 hover:bg-primary-blue transition-colors">
+                                    Pay Now
+                                </button>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- FAQ Section -->
-                <div class="bg-bg-white px-8 pt-6 pb-6 rounded-lg border border-[#EEF5FD]">
-                    <h2 class="text-2xl text-text-1 mb-4">Happicover FAQs</h2>
-                    <div class="space-y-2 divide-y divide-gray-300">
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                What does the coverage include?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <div class="mb-2">What's Covered:</div>
-                                <p class="mb-4">
-                                    Bodily Injury – Up to $1M/event<br>
-                                    Property Damage – Up to $100K/event<br>
-                                    Medical Payments – Up to $10K/event
-                                </p>
-                                <div class="mb-2">Optional Add-Ons:</div>
-                                <p>
-                                    Personal Property – Up to $20K ($500 deductible)<br>
-                                    Animal Liability – Up to $100K<br>
-                                    Pet Damage – Up to $750 ($100 deductible)<br>
-                                    Biohazard Clean-Up – Up to $2K
-                                </p>
-                            </div>
-                        </details>
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                Do I need to pay a deductible when filing a claim?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <p class="mt-2 text-text-2">Yes, there may be a deductible depending on the claim.</p>
-                            </div>
-                        </details>
-                        <!-- Remaining FAQ items would be here -->
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                Who should I reach out to with questions about the coverage?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>Please reach out to [Contact Information Placeholder].</p>
-                            </div>
-                        </details>
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                Can I get a refund if I cancel my coverage?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>Refund eligibility depends on [Refund Policy Placeholder].</p>
-                            </div>
-                        </details>
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                How do I access policy?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>You can access your policy through [Access Method Placeholder].</p>
-                            </div>
-                        </details>
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                How to make a claim?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>To make a claim, follow [Claim Process Placeholder].</p>
-                            </div>
-                        </details>
-                        <details class="border rounded-999 py-4 pr-4 pl-0 hover:border-theme-secondary transition-colors">
-                            <summary class="cursor-pointer hover:text-theme-secondary transition-colors flex justify-between items-center rounded-999 border-b-[1px] border-[#D0D2DE]">
-                                How to cancel policy?
-                                <img src="img/mi-chevron-up.svg" alt="Expand" class="w-5 h-5 transform transition-transform duration-300">
-                            </summary>
-                            <div class="mt-4 text-text-2 font-normal">
-                                <!-- Placeholder Answer -->
-                                <p>To cancel your policy, follow [Cancellation Process Placeholder].</p>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </main>
 
-    <!-- Chat Popup Modal -->
-    <div id="chat-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-        <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-md border border-[#EEF5FD]">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-sora">Chat Support</h3>
-                <button id="close-chat-popup" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
-            </div>
-            <!-- Dummy Chat Interface -->
-            <div class="h-64 border rounded-md flex flex-col">
-                <div class="flex-1 p-4 overflow-y-auto space-y-4">
-                    <!-- Dummy received message -->
                     <div class="flex justify-start">
-                        <div class="bg-gray-200 text-gray-800 p-3 rounded-lg max-w-[70%]">
-                            Hi there! How can I help you today?
-                        </div>
-                    </div>
-                    <!-- Dummy sent message -->
-                    <div class="flex justify-end">
-                        <div class="bg-theme-secondary text-white p-3 rounded-lg max-w-[70%]">
-                            I have a question about my insurance coverage.
-                        </div>
-                    </div>
-                </div>
-                <div class="border-t p-4 flex items-center">
-                    <input type="text" placeholder="Type your message..." class="flex-1 border-none outline-none rounded-md px-3 py-2 mr-2">
-                    <button class="bg-theme-secondary text-white px-4 py-2 rounded-md hover:bg-primary-blue transition-colors">Send</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Login Popup Modal -->
-    <div id="login-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-        <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-md border border-[#EEF5FD]">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-sora">Sign In</h3>
-                <button id="close-login-popup" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
-            </div>
-            <div class="space-y-4">
-                <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700">Email or Username</label>
-                    <input type="text" id="email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-theme-secondary focus:border-theme-secondary">
-                </div>
-                <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                    <input type="password" id="password" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-theme-secondary focus:border-theme-secondary">
-                </div>
-                <div class="flex justify-end">
-                    <button class="bg-theme-secondary text-white px-4 py-2 rounded-999 hover:bg-primary-blue transition-colors">Sign In</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Payment Details Popup Modal -->
-    <div id="payment-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-        <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-md border border-[#EEF5FD]">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-sora">Payment Details</h3>
-                <button id="close-payment-popup" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
-            </div>
-            <div class="space-y-4">
-                <!-- Test Payment Note -->
-                <div class="text-red-500 text-sm mb-2">
-                    Please enter any numbers, it's a test.
-                </div>
-                <!-- Card Number -->
-                <div>
-                    <label class="block mb-2 text-sm text-[#3C3F4C]">Card Number</label>
-                    <div class="relative">
-                        <input type="text" placeholder="1234 5678 9012 3456" class="w-full border-[0.5px] border-[#6D6F79] rounded-[4px] px-4 py-2 text-[#3C3F4C] focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
-                        <img src="img/visa.svg" alt="Visa" class="absolute right-4 top-1/2 transform -translate-y-1/2 h-6">
-                    </div>
-                </div>
-
-                <!-- Card Details -->
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block mb-2 text-sm text-[#3C3F4C]">Expiry Date</label>
-                        <input type="text" placeholder="MM/YY" class="w-full border-[0.5px] border-[#6D6F79] rounded-[4px] px-4 py-2 text-[#3C3F4C] focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
-                    </div>
-                    <div>
-                        <label class="block mb-2 text-sm text-[#3C3F4C]">CVV</label>
-                        <input type="text" placeholder="123" class="w-full border-[0.5px] border-[#6D6F79] rounded-[4px] px-4 py-2 text-[#3C3F4C] focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
-                    </div>
-                </div>
-
-                <!-- Name on Card -->
-                <div>
-                    <label class="block mb-2 text-sm text-[#3C3F4C]">Name on Card</label>
-                    <input type="text" placeholder="John Doe" class="w-full border-[0.5px] border-[#6D6F79] rounded-[4px] px-4 py-2 text-[#3C3F4C] focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
-                </div>
-
-                <!-- Billing Address -->
-                <div>
-                    <label class="block mb-2 text-sm text-[#3C3F4C]">Billing Address</label>
-                    <select class="w-full border-[0.5px] border-[#6D6F79] rounded-[4px] px-4 py-2 text-[#3C3F4C] focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300">
-                        <option>Same as property address</option>
-                        <option>Use a different address</option>
-                    </select>
-                </div>
-
-                <!-- Terms and Conditions -->
-                <div class="flex items-start space-x-3">
-                    <input type="checkbox" id="terms" class="mt-1 h-4 w-4 rounded border-[#6D6F79] text-theme-secondary focus:ring-theme-secondary">
-                    <label for="terms" class="text-sm text-[#3C3F4C]">
-                        I agree to the <a href="#" class="text-theme-secondary hover:underline">Terms and Conditions</a> and <a href="#" class="text-theme-secondary hover:underline">Privacy Policy</a>
-                    </label>
-                </div>
-
-                <!-- Pay Button -->
-                <div class="flex justify-end">
-                    <button class="bg-theme-secondary text-white px-6 pt-[16px] pb-[11px] rounded-999 hover:bg-primary-blue transition-colors">Pay $240.00</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Payment Confirmation Popup Modal -->
-    <div id="confirmation-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-        <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-md border border-[#EEF5FD]">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-sora">Payment Successful!</h3>
-                <button id="close-confirmation-popup" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
-            </div>
-            <div class="space-y-4">
-                <div class="flex justify-center mb-4">
-                    <div class="w-16 h-16 bg-[#F2F6FA] rounded-full flex items-center justify-center">
-                        <img src="img/check.svg" alt="Success" class="w-8 h-8">
-                    </div>
-                </div>
-                <div class="text-center">
-                    <p class="text-[#3C3F4C] mb-2">Your insurance is active—nice move.</p>
-                    <p class="text-[#3C3F4C] mb-6">Now let's make it even easier to manage. Set up your account in just one step - by creating a password.</p>
-                </div>
-                <div class="flex flex-col gap-3 mt-6">
-                    <button id="create-account-button" class="bg-theme-secondary text-white px-6 pt-[16px] pb-[11px] rounded-999 hover:bg-primary-blue transition-colors">Create My Account</button>
-                    <button id="not-now-button" class="border border-theme-secondary text-theme-secondary px-6 pt-[16px] pb-[11px] rounded-999 hover:bg-secondary-blue transition-colors">No, not now</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Account Creation Popup Modal -->
-    <div id="account-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-        <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-md border border-[#EEF5FD]">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-sora">Create Your Account</h3>
-                <button id="close-account-popup" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
-            </div>
-            <div class="space-y-4">
-                <div>
-                    <label class="block mb-2 text-sm text-[#3C3F4C]">Create Password</label>
-                    <input type="password" id="account-password" class="w-full border-[0.5px] border-[#6D6F79] rounded-[4px] px-4 py-2 text-[#3C3F4C] focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300" placeholder="Create a password">
-                </div>
-                <div class="flex items-start space-x-3 pt-2">
-                    <input type="checkbox" id="terms-account" class="mt-1 h-4 w-4 rounded border-[#6D6F79] text-theme-secondary focus:ring-theme-secondary">
-                    <label for="terms-account" class="text-sm text-[#3C3F4C]">
-                        I agree to the <a href="#" class="text-theme-secondary hover:underline">Terms and Conditions</a> and <a href="#" class="text-theme-secondary hover:underline">Privacy Policy</a>
-                    </label>
-                </div>
-                <div class="flex justify-end mt-6">
-                    <button id="create-account-submit" class="bg-theme-secondary text-white px-6 pt-[16px] pb-[11px] rounded-999 hover:bg-primary-blue transition-colors">Create Account</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Dashboard Page (Initially Hidden) -->
-    <div id="dashboard-page" class="hidden">
-        <!-- Header -->
-        <header class="bg-bg-white w-full border-b border-[#EEF5FD]">
-            <div class="container mx-auto px-[88px] py-4 w-full">
-                <div class="flex justify-between items-center w-full">
-                    <div class="flex items-center">
-                        <span class="text-4xl font-sora text-primary-blue font-extrabold">happipad</span>
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <button class="header-button">
-                            <span>Help 24/7</span>
-                        </button>
-                        <button id="sign-out-button" class="header-button">
-                            <span>Sign out</span>
+                        <button type="button" onclick="showStep(5)" class="text-theme-secondary font-semibold hover:text-primary-blue hover:bg-[#F5F7FC] px-4 py-2 rounded-lg transition-colors">
+                            ← Back to plan selection
                         </button>
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
 
-        <div class="container mx-auto px-[88px] py-8">
-            <div class="flex gap-6">
-                <!-- Sidebar -->
-                <div class="w-64 bg-white rounded-lg p-6 border border-[#EEF5FD]">
-                    <nav class="space-y-4">
-                        <a href="#" class="flex items-center space-x-3 text-theme-secondary font-bold">
-                            <img src="img/dashboard.svg" alt="Dashboard" class="w-5 h-5">
-                            <span>Dashboard</span>
-                        </a>
-                        <a href="#" class="flex items-center space-x-3 text-text-secondary-2 hover:text-theme-secondary transition-colors">
-                            <img src="img/profile.svg" alt="Profile" class="w-5 h-5">
-                            <span>Profile</span>
-                        </a>
-                        <a href="#" class="flex items-center space-x-3 text-text-secondary-2 hover:text-theme-secondary transition-colors">
-                            <img src="img/settings.svg" alt="Settings" class="w-5 h-5">
-                            <span>Settings</span>
-                        </a>
-                    </nav>
-                </div>
-
-                <!-- Main Content -->
-                <div class="flex-1">
-                    <div class="bg-white rounded-lg p-6 border border-[#EEF5FD]">
-                        <h1 class="text-3xl font-sora text-text-1 mb-6">Dashboard</h1>
-                        
-                        <!-- Policy Summary -->
-                        <div class="bg-[#F2F6FA] rounded-lg p-6 mb-6 border border-[#EEF5FD]">
-                            <h2 class="text-xl font-bold text-text-1 mb-4">Your Policy</h2>
-                            <div class="grid grid-cols-2 gap-6">
-                                <div>
-                                    <h3 class="font-bold text-text-1 mb-2">Annual Plan</h3>
-                                    <p class="text-text-secondary-2">Active until March 20, 2025</p>
-                                </div>
-                                <div class="text-right">
-                                    <div class="text-2xl font-bold text-theme-secondary">$240.00</div>
-                                    <div class="text-text-secondary-2">$20.00/month</div>
-                                </div>
+        <!-- FAQ Section -->
+        <div id="faqSection" class="bg-bg-white rounded-[16px] border border-[#EEF5FD] p-4 sm:p-4 md:p-6 w-full max-w-[1200px] mx-auto">
+            <h3 class="text-lg font-semibold mb-4">Frequently Asked Questions</h3>
+            <div class="space-y-4">
+                <div class="border-b border-[#EEF5FD] pb-4">
+                    <button class="flex justify-between items-center w-full text-left border-b border-[#EEF5FD] pb-4" onclick="toggleFAQ(this)">
+                        <span class="font-medium text-text-1">What is renters insurance?</span>
+                        <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="mt-2 hidden space-y-4">
+                        <p class="text-base text-[#3C3F4C] opacity-60 font-semibold">Renters insurance is a type of insurance policy that provides coverage for your personal belongings and liability protection when you're renting a home or apartment.</p>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span class="text-base text-[#3C3F4C] opacity-60 font-semibold">Bodily Injury</span>
+                                <span class="text-base text-[#3C3F4C] opacity-60 font-semibold">Up to $1M/event</span>
                             </div>
-                        </div>
-
-                        <!-- Coverage Details -->
-                        <div class="bg-[#F2F6FA] rounded-lg p-6 border border-[#EEF5FD]">
-                            <h2 class="text-xl font-bold text-text-1 mb-4">Coverage Details</h2>
-                            <div class="space-y-4">
-                                <div class="flex justify-between items-center">
-                                    <span class="text-text-secondary-2">Bodily Injury Coverage</span>
-                                    <span class="text-text-1 font-bold">$1M/event</span>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-text-secondary-2">Property Damage Coverage</span>
-                                    <span class="text-text-1 font-bold">$100K/event</span>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-text-secondary-2">Medical Payments</span>
-                                    <span class="text-text-1 font-bold">$10K/event</span>
-                                </div>
+                            <div class="flex justify-between">
+                                <span class="text-base text-[#3C3F4C] opacity-60 font-semibold">Property Damage</span>
+                                <span class="text-base text-[#3C3F4C] opacity-60 font-semibold">Up to $100K/event</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-base text-[#3C3F4C] opacity-60 font-semibold">Medical Payments</span>
+                                <span class="text-base text-[#3C3F4C] opacity-60 font-semibold">Up to $10K/event</span>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="border-b border-[#EEF5FD] pb-4">
+                    <button class="flex justify-between items-center w-full text-left border-b border-[#EEF5FD] pb-4" onclick="toggleFAQ(this)">
+                        <span class="font-medium text-text-1">Do I need to pay a deductible when filing a claim?</span>
+                        <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="mt-2 text-text-secondary-2 hidden space-y-2">
+                        <p class="text-base text-[#3C3F4C] opacity-60 font-semibold">No deductible for Bodily Injury Liability, Property Damage Liability, and Medical Payments to Others — you're fully covered from the first dollar.</p>
+                        <p class="text-base text-[#3C3F4C] opacity-60 font-semibold">$500 deductible applies to Limited Personal Property coverage (your belongings).</p>
+                        <p class="text-base text-[#3C3F4C] opacity-60 font-semibold">$100 deductible applies to Pet Damage coverage.</p>
+                        <p class="text-base text-[#3C3F4C] opacity-60 font-semibold">No deductible for Animal Liability and Biohazard Clean-Up endorsements.</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+
+        <!-- Payment Popup -->
+        <div id="paymentPopup" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50" onclick="closePaymentPopup()">
+            <div class="bg-bg-white rounded-[16px] p-6 max-w-lg w-full mx-4 border border-[#EEF5FD]" onclick="event.stopPropagation()">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-sora">Payment Information</h3>
+                    <button onclick="closePaymentPopup()" class="text-text-secondary-2 hover:text-text-1">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <form id="paymentForm" class="space-y-4">
+                    <div>
+                        <label class="block text-sm text-text-secondary-2 mb-1">Card Number</label>
+                        <input type="text" class="w-full border-[0.5px] border-[#6D6F79] rounded-[4px] px-4 py-2 text-text-1 focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300" placeholder="1234 5678 9012 3456">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm text-text-secondary-2 mb-1">Expiry Date</label>
+                            <input type="text" class="w-full border-[0.5px] border-[#6D6F79] rounded-[4px] px-4 py-2 text-text-1 focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300" placeholder="MM/YY">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-text-secondary-2 mb-1">CVV</label>
+                            <input type="text" class="w-full border-[0.5px] border-[#6D6F79] rounded-[4px] px-4 py-2 text-text-1 focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300" placeholder="123">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-text-secondary-2 mb-1">Name on Card</label>
+                        <input type="text" class="w-full border-[0.5px] border-[#6D6F79] rounded-[4px] px-4 py-2 text-text-1 focus:ring-2 focus:ring-theme-secondary focus:border-theme-secondary transition-all duration-300" placeholder="John Doe">
+                    </div>
+                    <button type="submit" class="w-full bg-theme-secondary text-white pt-4 pb-[11px] px-8 rounded-999 hover:bg-primary-blue transition-colors">
+                        Complete Payment
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Confirmation Popup -->
+        <div id="confirmationPopup" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50" onclick="closeConfirmation()">
+            <div class="bg-bg-white rounded-[16px] p-6 max-w-lg w-full mx-4 border border-[#EEF5FD]" onclick="event.stopPropagation()">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-sora">Confirmation</h3>
+                    <button onclick="closeConfirmation()" class="text-text-secondary-2 hover:text-text-1">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-text-secondary-2 mb-6">Thank you for your purchase! Your order has been confirmed.</p>
+            </div>
+        </div>
+    </main>
 
     <script>
-        // Wait for DOM to be fully loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM loaded');
+        // Initialize the flow
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set initial step
+            showStep(1);
+        });
+
+        // Function to show a specific step
+        function showStep(stepNumber) {
+            // Hide all steps
+            document.querySelectorAll('.step-content').forEach(step => {
+                step.classList.remove('active');
+                step.classList.add('hidden');
+            });
             
-            // Function to show error message
-            function showError(input, message) {
-                const errorDiv = input.nextElementSibling;
-                if (!errorDiv || !errorDiv.classList.contains('error-message')) {
-                    const div = document.createElement('div');
-                    div.className = 'error-message text-red-500 text-sm mt-1';
-                    div.textContent = message;
-                    input.parentNode.insertBefore(div, input.nextSibling);
-                }
-                input.classList.add('border-red-500');
+            // Show the selected step
+            const currentStep = document.getElementById('step' + stepNumber);
+            if (currentStep) {
+                currentStep.classList.remove('hidden');
+                // Trigger reflow
+                currentStep.offsetHeight;
+                currentStep.classList.add('active');
             }
-
-            // Function to clear error message
-            function clearError(input) {
-                const errorDiv = input.nextElementSibling;
-                if (errorDiv && errorDiv.classList.contains('error-message')) {
-                    errorDiv.remove();
-                }
-                input.classList.remove('border-red-500');
-            }
-
-            // Function to validate step 1 (Address)
-            function validateStep1() {
-                let isValid = true;
-                const inputs = document.querySelectorAll('#step-content-1 input');
-                inputs.forEach(input => {
-                    if (!input.value.trim()) {
-                        showError(input, 'This field is required');
-                        isValid = false;
-                    } else {
-                        clearError(input);
-                    }
-                });
-                return isValid;
-            }
-
-            // Function to validate step 2 (Start Date)
-            function validateStep2() {
-                const dateInput = document.querySelector('#step-content-2 input[type="date"]');
-                if (!dateInput.value) {
-                    showError(dateInput, 'Please select a start date');
-                    return false;
-                }
-                clearError(dateInput);
-                return true;
-            }
-
-            // Function to validate step 3 (Personal Details)
-            function validateStep3() {
-                let isValid = true;
-                const inputs = document.querySelectorAll('#step-content-3 input');
-                inputs.forEach(input => {
-                    if (!input.value.trim()) {
-                        showError(input, 'This field is required');
-                        isValid = false;
-                    } else {
-                        clearError(input);
-                    }
-                });
-                return isValid;
-            }
-
-            // Function to validate step 4 (Contact Info)
-            function validateStep4() {
-                let isValid = true;
-                const emailInput = document.querySelector('#step-content-4 input[type="email"]');
-                const phoneInput = document.querySelector('#step-content-4 input[type="tel"]');
-
-                if (!emailInput.value.trim()) {
-                    showError(emailInput, 'Email is required');
-                    isValid = false;
-                } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)) {
-                    showError(emailInput, 'Please enter a valid email address');
-                    isValid = false;
-                } else {
-                    clearError(emailInput);
-                }
-
-                // Phone number is optional, only validate if something is entered
-                if (phoneInput.value.trim() && !/^\+?[\d\s-()]+$/.test(phoneInput.value)) {
-                    showError(phoneInput, 'Please enter a valid phone number');
-                    isValid = false;
-                } else {
-                    clearError(phoneInput);
-                }
-
-                return isValid;
-            }
-
-            // Function to validate step 5 (Plan Selection)
-            function validateStep5() {
-                const selectedPlan = document.querySelector('input[name="plan"]:checked');
-                if (!selectedPlan) {
-                    const planContainer = document.querySelector('#step-content-5 .grid');
-                    const errorDiv = document.createElement('div');
-                    errorDiv.className = 'error-message text-red-500 text-sm mt-2';
-                    errorDiv.textContent = 'Please select a plan';
-                    planContainer.appendChild(errorDiv);
-                    return false;
-                }
-                return true;
-            }
-
-            // Get all button elements
-            const helpButton = document.querySelector('.header-button:first-of-type');
-            const chatPopup = document.getElementById('chat-popup');
-            const closeChatButton = document.getElementById('close-chat-popup');
-
-            const signInButton = document.querySelector('.header-button:last-of-type');
-            const loginPopup = document.getElementById('login-popup');
-            const closeLoginButton = document.getElementById('close-login-popup');
             
-            // Payment and Account related elements
-            const paymentPopup = document.getElementById('payment-popup');
-            const closePaymentButton = document.getElementById('close-payment-popup');
-            const continueButton6 = document.getElementById('continue-button-6');
-            const confirmationPopup = document.getElementById('confirmation-popup');
-            const closeConfirmationButton = document.getElementById('close-confirmation-popup');
-            const accountPopup = document.getElementById('account-popup');
-            const createAccountButton = document.getElementById('create-account-button');
-            const notNowButton = document.getElementById('not-now-button');
-            const closeAccountButton = document.getElementById('close-account-popup');
-            const createAccountSubmit = document.getElementById('create-account-submit');
-            const payButton = document.querySelector('#payment-popup .bg-theme-secondary');
-
-            // Chat popup functionality
-            if (helpButton) {
-                helpButton.addEventListener('click', () => {
-                    chatPopup.classList.remove('hidden');
-                });
+            // Update progress bar
+            const totalSteps = 6; // Total number of steps
+            const progress = ((stepNumber - 1) / (totalSteps - 1)) * 100;
+            const progressBar = document.getElementById('progressBar');
+            if (progressBar) {
+                progressBar.style.width = progress + '%';
+            }
+            
+            // Update step counter
+            const stepCounter = document.getElementById('stepCounter');
+            if (stepCounter) {
+                stepCounter.textContent = `Step ${stepNumber} of ${totalSteps}`;
             }
 
-            if (closeChatButton) {
-                closeChatButton.addEventListener('click', () => {
-                    chatPopup.classList.add('hidden');
-                });
+            // Show/hide FAQ section based on current step
+            const faqSection = document.getElementById('faqSection');
+            if (faqSection) {
+                faqSection.style.display = stepNumber === 6 ? 'none' : 'block';
             }
+        }
 
-            // Login popup functionality
-            if (signInButton) {
-                signInButton.addEventListener('click', () => {
-                    loginPopup.classList.remove('hidden');
-                });
-            }
-
-            if (closeLoginButton) {
-                closeLoginButton.addEventListener('click', () => {
-                    loginPopup.classList.add('hidden');
-                });
-            }
-
-            // Payment flow
-            if (continueButton6) {
-                continueButton6.addEventListener('click', () => {
-                    paymentPopup.classList.remove('hidden');
-                });
-            }
-
-            if (closePaymentButton) {
-                closePaymentButton.addEventListener('click', () => {
-                    paymentPopup.classList.add('hidden');
-                });
-            }
-
-            if (payButton) {
-                payButton.addEventListener('click', () => {
-                    paymentPopup.classList.add('hidden');
-                    confirmationPopup.classList.remove('hidden');
-                });
-            }
-
-            if (closeConfirmationButton) {
-                closeConfirmationButton.addEventListener('click', () => {
-                    confirmationPopup.classList.add('hidden');
-                });
-            }
-
-            // Account creation flow
-            if (createAccountButton) {
-                createAccountButton.addEventListener('click', () => {
-                    console.log('Create account button clicked');
-                    confirmationPopup.classList.add('hidden');
-                    accountPopup.classList.remove('hidden');
-                });
-            }
-
-            if (notNowButton) {
-                notNowButton.addEventListener('click', () => {
-                    confirmationPopup.classList.add('hidden');
-                });
-            }
-
-            if (closeAccountButton) {
-                closeAccountButton.addEventListener('click', () => {
-                    accountPopup.classList.add('hidden');
-                });
-            }
-
-            if (createAccountSubmit) {
-                createAccountSubmit.addEventListener('click', () => {
-                    const password = document.getElementById('account-password').value;
-                    const termsChecked = document.getElementById('terms-account').checked;
-
-                    if (!password) {
-                        alert('Please create a password');
-                        return;
-                    }
-
-                    if (!termsChecked) {
-                        alert('Please agree to the Terms and Conditions');
-                        return;
-                    }
-
-                    // Hide all other content
-                    document.querySelector('main').classList.add('hidden');
-                    document.querySelector('header').classList.add('hidden');
-                    document.querySelector('footer').classList.add('hidden');
-                    
-                    // Show dashboard
-                    document.getElementById('dashboard-page').classList.remove('hidden');
-                    
-                    // Hide the account popup
-                    accountPopup.classList.add('hidden');
-                });
-            }
-
-            // Sign out functionality
-            const signOutButton = document.getElementById('sign-out-button');
-            if (signOutButton) {
-                signOutButton.addEventListener('click', () => {
-                    // Hide dashboard
-                    document.getElementById('dashboard-page').classList.add('hidden');
-                    
-                    // Show main content
-                    document.querySelector('main').classList.remove('hidden');
-                    document.querySelector('header').classList.remove('hidden');
-                    document.querySelector('footer').classList.remove('hidden');
-                    
-                    // Reset to first step
-                    showStep(1);
-                });
-            }
-
-            // Step navigation elements
-            const step1Content = document.getElementById('step-content-1');
-            const step2Content = document.getElementById('step-content-2');
-            const step3Content = document.getElementById('step-content-3');
-            const step4Content = document.getElementById('step-content-4');
-            const step5Content = document.getElementById('step-content-5');
-            const step6Content = document.getElementById('step-content-6');
-
-            const continueButton1 = document.getElementById('continue-button-1');
-            const backButton2 = document.getElementById('back-button-2');
-            const continueButton2 = document.getElementById('continue-button-2');
-            const backButton3 = document.getElementById('back-button-3');
-            const continueButton3 = document.getElementById('continue-button-3');
-            const backButton4 = document.getElementById('back-button-4');
-            const continueButton4 = document.getElementById('continue-button-4');
-            const backButton5 = document.getElementById('back-button-5');
-            const continueButton5 = document.getElementById('continue-button-5');
-            const backButton6 = document.getElementById('back-button-6');
-
-            // Function to show a specific step and hide others
-            function showStep(stepNumber) {
-                console.log('Showing step:', stepNumber);
-                // Hide all steps
-                step1Content.classList.add('hidden');
-                step2Content.classList.add('hidden');
-                step3Content.classList.add('hidden');
-                step4Content.classList.add('hidden');
-                step5Content.classList.add('hidden');
-                step6Content.classList.add('hidden');
-
-                // Show the selected step
-                if (stepNumber === 1) {
-                    step1Content.classList.remove('hidden');
-                } else if (stepNumber === 2) {
-                    step2Content.classList.remove('hidden');
-                } else if (stepNumber === 3) {
-                    step3Content.classList.remove('hidden');
-                } else if (stepNumber === 4) {
-                    step4Content.classList.remove('hidden');
-                } else if (stepNumber === 5) {
-                    step5Content.classList.remove('hidden');
-                } else if (stepNumber === 6) {
-                    step6Content.classList.remove('hidden');
-                }
-
-                // Update step indicators
-                const indicators = document.querySelectorAll('.step-indicator');
-                indicators.forEach((indicator, index) => {
-                    indicator.classList.remove('active', 'completed');
-                    if (index + 1 < stepNumber) {
-                        indicator.classList.add('completed');
-                    } else if (index + 1 === stepNumber) {
-                        indicator.classList.add('active');
-                    }
-                });
-
-                // Update progress bar
-                const progressFills = document.querySelectorAll('.progress-fill');
-                const totalSteps = 6; // Total number of steps
-                const progressPercentage = ((stepNumber - 1) / (totalSteps - 1)) * 100;
-                
-                progressFills.forEach(progressFill => {
-                    progressFill.style.height = `${progressPercentage}%`;
-                });
-            }
-
-            // Event Listeners for navigation buttons with validation
-            if (continueButton1) {
-                continueButton1.addEventListener('click', () => {
-                    if (validateStep1()) {
-                        showStep(2);
-                    }
-                });
-            }
-
-            if (backButton2) {
-                backButton2.addEventListener('click', () => {
-                    showStep(1);
-                });
-            }
-
-            if (continueButton2) {
-                continueButton2.addEventListener('click', () => {
-                    if (validateStep2()) {
-                        showStep(3);
-                    }
-                });
-            }
-
-            if (backButton3) {
-                backButton3.addEventListener('click', () => {
-                    showStep(2);
-                });
-            }
-
-            if (continueButton3) {
-                continueButton3.addEventListener('click', () => {
-                    if (validateStep3()) {
-                        showStep(4);
-                    }
-                });
-            }
-
-            if (backButton4) {
-                backButton4.addEventListener('click', () => {
-                    showStep(3);
-                });
-            }
-
-            if (continueButton4) {
-                continueButton4.addEventListener('click', () => {
-                    if (validateStep4()) {
-                        showStep(5);
-                    }
-                });
-            }
-
-            if (backButton5) {
-                backButton5.addEventListener('click', () => {
-                    showStep(4);
-                });
-            }
-
-            if (continueButton5) {
-                continueButton5.addEventListener('click', () => {
-                    if (validateStep5()) {
-                        showStep(6);
-                    }
-                });
-            }
-
-            if (backButton6) {
-                backButton6.addEventListener('click', () => {
-                    showStep(5);
-                });
-            }
-
-            // Add input event listeners to clear errors when user starts typing
-            document.querySelectorAll('input').forEach(input => {
-                input.addEventListener('input', () => {
-                    clearError(input);
+        // Add click event listeners to all buttons
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add click handlers for all continue buttons
+            document.querySelectorAll('button[onclick^="showStep"]').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const stepNumber = parseInt(this.getAttribute('onclick').match(/showStep\((\d+)\)/)[1]);
+                    showStep(stepNumber);
                 });
             });
+        });
 
-            // Initialize: Show the first step when the page loads
-            showStep(1);
+        // FAQ Toggle Function
+        function toggleFAQ(button) {
+            const content = button.nextElementSibling;
+            const arrow = button.querySelector('svg');
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                arrow.classList.add('rotate-180');
+            } else {
+                content.classList.add('hidden');
+                arrow.classList.remove('rotate-180');
+            }
+        }
 
-            // Plan selection handling
-            const planInputs = document.querySelectorAll('input[name="plan"]');
-            const paymentAmount = document.querySelector('#continue-button-6');
-            const paymentPopupAmount = document.querySelector('#payment-popup .bg-theme-secondary');
-            const orderSummaryAmount = document.querySelector('#step-content-6 .text-2xl.font-bold.text-theme-secondary');
-            const orderSummaryMonthly = document.querySelector('#step-content-6 .text-text-secondary-2.text-sm');
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('mobileMenuOverlay');
+            
+            menu.classList.toggle('active');
+            overlay.classList.toggle('hidden');
+            
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+        }
 
-            planInputs.forEach(input => {
-                input.addEventListener('change', function() {
-                    const isMonthlyPlan = this.value === 'premium';
-                    const totalAmount = isMonthlyPlan ? '$22.00' : '$240.00';
-                    const monthlyAmount = isMonthlyPlan ? '$20.00' : '$20.00';
-                    const planName = isMonthlyPlan ? 'Monthly Plan' : 'Annual Plan';
-                    const planDescription = isMonthlyPlan ? 'Pay monthly' : 'Pay annually';
+        // Close mobile menu on window resize if open
+        window.addEventListener('resize', () => {
+            const menu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('mobileMenuOverlay');
+            
+            if (window.innerWidth > 768 && menu.classList.contains('active')) {
+                menu.classList.remove('active');
+                overlay.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+        });
 
-                    // Update payment button text
-                    paymentAmount.textContent = `Pay ${totalAmount}`;
-                    paymentPopupAmount.textContent = `Pay ${totalAmount}`;
+        // Add this to your existing script
+        document.addEventListener('DOMContentLoaded', function() {
+            const planRadios = document.querySelectorAll('input[name="plan"]');
+            const planType = document.getElementById('plan-type');
+            const planPrice = document.getElementById('plan-price');
+            const subtotal = document.getElementById('subtotal');
+            const total = document.getElementById('total');
 
-                    // Update order summary
-                    const planTitle = document.querySelector('#step-content-6 h3.font-bold.text-text-1');
-                    const planDesc = document.querySelector('#step-content-6 p.text-text-secondary-2.text-sm');
-                    const orderSummaryTotal = document.querySelector('#step-content-6 .text-2xl.font-bold.text-theme-secondary');
-                    const orderSummaryMonthly = document.querySelector('#step-content-6 .text-text-secondary-2.text-sm');
-                    
-                    planTitle.textContent = planName;
-                    planDesc.textContent = planDescription;
-                    
-                    if (isMonthlyPlan) {
-                        orderSummaryTotal.textContent = '$20.00';
-                        orderSummaryMonthly.textContent = 'per month';
+            planRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    if (this.value === 'monthly') {
+                        planType.textContent = 'Monthly Payment';
+                        planPrice.innerHTML = '$22<span class="text-base font-semibold text-text-secondary-2">/month</span>';
+                        subtotal.textContent = '$22.00';
+                        total.textContent = '$27.00';
                     } else {
-                        orderSummaryTotal.textContent = '$240.00';
-                        orderSummaryMonthly.textContent = '$20.00/month';
+                        planType.textContent = 'Yearly Payment';
+                        planPrice.innerHTML = '$240<span class="text-base font-semibold text-text-secondary-2">/year</span>';
+                        subtotal.textContent = '$240.00';
+                        total.textContent = '$245.00';
                     }
                 });
             });
         });
-    </script>
 
-    <footer class="relative bg-[#2A4B73] pt-5 pb-20 text-center rounded-t-[32px] font-nexa text-base mt-[328px] min-h-[328px] box-border flex flex-col justify-center">
-        <div class="max-w-xl mx-auto font-medium text-[#D7DCE4] leading-[1.5] my-auto">
-            <!-- Happipad text instead of Logo -->
-            <div class="font-sora font-extrabold text-[#D7DCE4] text-[44px] mb-4">happipad</div>
-            Happipad.org is a Canadian federally incorporated nonprofit on a mission to make home sharing safe, affordable, and accessible to those can benefit most.
-        </div>
-        <div class="absolute bottom-0 left-0 right-0 h-[60px] bg-[#203F65] flex justify-center items-center gap-8 rounded-b-2xl">
-            <a href="/privacy-policy" class="text-[#A2B2CB] text-base font-nexa font-normal no-underline hover:underline transition">
-                Privacy policy
-            </a>
-            <a href="/terms-of-use" class="text-[#A2B2CB] text-base font-nexa font-normal no-underline hover:underline transition">
-                Terms of use
-            </a>
-        </div>
-    </footer>
+        // Add these functions to your existing script
+        function showPaymentPopup() {
+            const popup = document.getElementById('paymentPopup');
+            popup.classList.remove('hidden');
+            popup.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePaymentPopup() {
+            const popup = document.getElementById('paymentPopup');
+            popup.classList.add('hidden');
+            popup.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+
+        // Add event listener for payment form submission
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            closePaymentPopup();
+            showConfirmation();
+        });
+
+        // Function to show the confirmation popup
+        function showConfirmation() {
+            const popup = document.getElementById('confirmationPopup');
+            popup.classList.remove('hidden');
+            popup.classList.add('flex');
+        }
+
+        // Function to close the confirmation popup
+        function closeConfirmation() {
+            const popup = document.getElementById('confirmationPopup');
+            popup.classList.add('hidden');
+            popup.classList.remove('flex');
+        }
+    </script>
 </body>
 </html> 
